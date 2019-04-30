@@ -23,12 +23,12 @@ app.use(
 // app.use(passport.initialize());
 // app.use(passport.session());
 
-// socket setup
+// socket setup (Just in case we need  it for live updates, which I think we will)
 const http = require("http").createServer(app);
 const io = require("socket.io")(http);
 app.io = io;
 
-// Requiring our routes
+// TODO: Require our routes
 
 http.listen(PORT, function() {
   console.log(
