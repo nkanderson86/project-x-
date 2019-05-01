@@ -4,12 +4,13 @@ const log = require("con-logger");
 const Users = require("../models/users");
 
 module.exports = function(app) {
-  app.get("/register", function(req, res) {
+  app.get("/api/register", function(req, res) {
     log("Registration page");
     res.send("Registration page");
   });
 
-  app.post("/register", function(req, res) {
+  app.post("/api/register", function(req, res) {
+    // NOTE: This takes an object with  keys username, password, deviceId. It should require all 3
     const deviceId = req.body.deviceId;
     Auth.register(
       new Auth({ username: req.body.username }),
@@ -40,35 +41,36 @@ module.exports = function(app) {
     );
   });
 
-  app.get("/login", function(req, res) {
+  app.get("/api/login", function(req, res) {
     log("Login Screen");
     res.send("Login Screen");
   });
 
-  app.post("/login", passport.authenticate("local"), function(req, res) {
+  app.post("/api/login", passport.authenticate("local"), function(req, res) {
+    // NOTE: this takes an  object with  keys username, password
     res.send(req.user);
   });
 
-  app.get("/logout", function(req, res) {
+  app.get("/api/logout", function(req, res) {
     req.logout();
-    res.redirect("/login");
+    res.redirect("/api/login");
   });
 
-  app.get("/users", function(req, res) {
+  app.get("/api/users", function(req, res) {
     Users.find({}, (err, data) => {
       if (err) log(err);
       res.send(data);
     });
   });
 
-  app.get("/accounts", function(req, res) {
+  app.get("/api/accounts", function(req, res) {
     Auth.find({}, (err, data) => {
       if (err) log(err);
       res.send(data);
     });
   });
 
-  app.get("/reset", function(req, res) {
+  app.get("/api/reset", function(req, res) {
     Auth.remove({}, err => {
       if (err) log(err);
       Users.remove({}, err => {

@@ -34,6 +34,7 @@ app.io = io;
 
 // TODO: Require our routes
 require("./controllers/auth-routes")(app);
+require("./controllers/pi-routes")(app);
 
 http.listen(PORT, function() {
   console.log(
