@@ -20,7 +20,7 @@ app.use(
   session({ secret: "keyboard cat", resave: true, saveUninitialized: true })
 );
 
-// TODO: Update passport and uncomment this
+// TODO: Update passport and uncomment this.
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -36,7 +36,7 @@ app.io = io;
 require("./controllers/auth-routes")(app);
 require("./controllers/pi-routes")(app);
 
-http.listen(PORT, function() {
+http.listen(PORT, function () {
   console.log(
     "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
     PORT,
