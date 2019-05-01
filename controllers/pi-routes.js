@@ -74,4 +74,6 @@ module.exports = function(app) {
   //       }
   //     });
   //   });
+
+  //   TODO: Add an update schedule route implementing findOneAndUpdate https://mongoosejs.com/docs/api.html#model_Model.findOneAndUpdate
 };
