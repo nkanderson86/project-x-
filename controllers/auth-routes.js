@@ -1,5 +1,5 @@
 const passport = require("passport");
-const Auth = require("./models/auth");
+const Auth = require("../models/auth");
 const log = require("con-logger");
 
 module.exports = function(app) {
@@ -33,12 +33,12 @@ module.exports = function(app) {
   });
 
   app.post("/login", passport.authenticate("local"), function(req, res) {
-    res.redirect("/");
+    res.send(req.user);
   });
 
   app.get("/logout", function(req, res) {
     req.logout();
-    res.redirect("/");
+    res.redirect("/login");
   });
 };
 
