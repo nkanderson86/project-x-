@@ -46,17 +46,32 @@ module.exports = function(app) {
       }
     });
   });
-  //   app.post("/api/addSensor", isAuthenticated, function(req, res) { // NOTE: Needs to be passed sensorId in  req.body
-  //     Users.findOne({ id: req.user.id }, (err, data) => {
+  //   app.post("/api/addSensor", isAuthenticated, function(req, res) {
+  //     // NOTE: Needs to be passed sensorId in  req.body
+  //     let SID = req.body.sensorId;
+  //     let UID = req.user.id
+  //     Users.findOne({ id: UID }, (err, data) => {
   //       if (err) console.log(err);
-  //       console.log(data.sensors);
+  //       log(data);
+  //       let exists = false;
   //       data.sensors.forEach(sensor => {
-  //           if(sensor.sensorId === req.body.sensorId) {
-  //               res.send("Sensor already exists")
-  //           } else {
-  //               Users.updateOne({id = req.user.id}, sensors.push({sensorId: req.body.sensorId}))
-  //           }
+  //         if (sensor.sensorId === SID) {
+  //           exists = true;
+  //           res.send("Sensor already exists");
+  //         }
   //       });
+
+  //       if (!exists) {
+  //         Users.updateOne(
+  //           { id: UID },
+  //           { $push: { sensors: { sensorId: SID } } },
+  //           (err, data) => {
+  //             if (err) console.log(err);
+  //             log(data);
+  //             res.send(data);
+  //           }
+  //         );
+  //       }
   //     });
   //   });
 };
