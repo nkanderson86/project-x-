@@ -6,8 +6,11 @@
  * @flow
  */
 
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import React, { Component } from 'react';
+import { Platform, StyleSheet, Text, View, Image } from 'react-native';
+import LotsOfGreetings from './src/components/greeting';
+import BlinkApp from './src/components/blink';
+
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -19,12 +22,23 @@ const instructions = Platform.select({
 type Props = {};
 export default class App extends Component<Props> {
   render() {
+    let pic = {
+      uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
+    };
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>Welcome to React Native!</Text>
         <Text style={styles.instructions}>To get started, edit App.js</Text>
         <Text style={styles.instructions}>{instructions}</Text>
+        <Image source={pic} style={{ width: 193, height: 110 }} />
+        <LotsOfGreetings />
+        <Text />
+        <Text />
+        <Text />
+        <Text />
+        <BlinkApp />
       </View>
+
     );
   }
 }
