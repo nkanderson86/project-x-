@@ -21,8 +21,9 @@ import Scroll from './src/components/scroll';
 //     'Shake or press menu button for dev menu',
 // });
 
-type Props = {};
-export default class App extends Component<Props> {
+// type Props = {};
+// deleted <Props>
+export default class App extends Component {
   render() {
     let pic = {
       uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
