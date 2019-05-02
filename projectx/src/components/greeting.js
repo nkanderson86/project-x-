@@ -1,11 +1,22 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+
+const styles = StyleSheet.create({
+    bigBlue: {
+        color: 'blue',
+        fontWeight: 'bold',
+        fontSize: 30,
+    },
+    red: {
+        color: 'red',
+    },
+});
 
 class Greeting extends Component {
     render() {
         return (
             <View style={{ alignItems: 'center' }}>
-                <Text>Hello {this.props.name}!</Text>
+                <Text style={styles.red}>Hello {this.props.name}!</Text>
             </View>
         );
     }
@@ -18,9 +29,10 @@ export class LotsOfGreetings extends Component {
                 <Greeting name='Rexxar' />
                 <Greeting name='Jaina' />
                 <Greeting name='Valeera' />
-            </View>
+            </View >
         );
     }
 }
+
 
 export default LotsOfGreetings; 
