@@ -1,23 +1,21 @@
 import React, { Component } from 'react';
 import { Container, Header, Content, Form, Item, Input, Label } from 'native-base';
-import Login from "../components/Login"
+import LoginForm from "../components/Login/LoginForm"
+import LoginHeaderImage from "../components/Login/LoginHeaderImage"
 // import Icon from 'react-native-vector-icons/FontAwesome';
 
-
-
 export default class HomeScreen extends Component {
+  static navigationOptions = {
+    title: 'ProjectX Login',
+  };
+
   render() {
-
-    // goToMain = () => {
-    //   const navigationAction = NavigationActions.navigate({
-    //     routeName: "Main",
-    //   });
-    //   this.props.navigation.dispatch(navigationAction);
-    // }
-
     return (
       <Container>
-        <Login />
+        <LoginHeaderImage />
+        <Content>
+          <LoginForm navigation={this.props.navigation} />
+        </Content>
       </Container>
     );
   }

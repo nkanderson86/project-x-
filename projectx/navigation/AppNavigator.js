@@ -1,9 +1,6 @@
-import React from 'react';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
-
 import MainTabNavigator from './MainTabNavigator';
 import AuthNavigator from './AuthNavigator';
-
 
 export default createAppContainer(createSwitchNavigator({
   // You could add another route here for authentication.
@@ -14,7 +11,7 @@ export default createAppContainer(createSwitchNavigator({
   // login, and sign up screen, and reset password screen
   Auth: AuthNavigator
 },
-{
-  initialRouteName: "Auth"
-}
+  {
+    initialRouteName: "Auth"
+  }
 ));
