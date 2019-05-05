@@ -1,10 +1,14 @@
+// required imports and dependencies
 import React, { Component } from 'react';
-import { Container, Header, Content, Form, Item, Input, Label } from 'native-base';
+import { Container, Content } from 'native-base';
 import SignupForm from "../components/Signup/SignupForm"
 import LoginHeaderImage from "../components/Login/LoginHeaderImage"
+import { withNavigation } from 'react-navigation';
 // import Icon from 'react-native-vector-icons/FontAwesome';
 
-export default class SignupScreen extends Component {
+// create classful component
+class SignupScreen extends Component {
+    // title for screen
     static navigationOptions = {
         title: 'Signup',
     };
@@ -12,8 +16,11 @@ export default class SignupScreen extends Component {
     render() {
 
         return (
+            // container for components
             <Container>
+                {/* icon/logo */}
                 <LoginHeaderImage />
+                {/* signup form component */}
                 <Content>
                     <SignupForm />
                 </Content>
@@ -22,3 +29,6 @@ export default class SignupScreen extends Component {
         );
     }
 }
+
+// export component withNavigation method which will pass props
+export default withNavigation(SignupScreen);

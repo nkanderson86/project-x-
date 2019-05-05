@@ -1,10 +1,14 @@
+// required imports and dependencies
 import React, { Component } from 'react';
-import { Container, Header, Content, Form, Item, Input, Label } from 'native-base';
+import { Container, Content } from 'native-base';
 import ForgotPasswordForm from "../components/Forgot/ForgotPasswordForm"
 import LoginHeaderImage from "../components/Login/LoginHeaderImage"
+import { withNavigation } from 'react-navigation';
 // import Icon from 'react-native-vector-icons/FontAwesome';
 
-export default class ForgotPasswordScreen extends Component {
+// create classful component
+class ForgotPasswordScreen extends Component {
+    // title for screen
     static navigationOptions = {
         title: 'Forgot Password',
     };
@@ -12,13 +16,18 @@ export default class ForgotPasswordScreen extends Component {
     render() {
 
         return (
+            // container for components
             <Container>
+                {/* icon/logo */}
                 <LoginHeaderImage />
+                {/* forgot password form component */}
                 <Content>
                     <ForgotPasswordForm />
                 </Content>
             </Container>
-
         );
     }
 }
+
+// export component withNavigation method which will pass props
+export default withNavigation(ForgotPasswordScreen);

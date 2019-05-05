@@ -1,20 +1,22 @@
+// required imports and dependencies
 import React, { Component } from 'react';
-import { StyleSheet, Text, Linking, View } from 'react-native';
-import { Container, Header, Content, Form, Item, Input, Label } from 'native-base';
+import { StyleSheet } from 'react-native';
 import { Button } from 'react-native-elements';
-import { NavigationActions } from "react-navigation";
+import { NavigationActions, withNavigation } from "react-navigation";
 
-export default class ResetPasswordButton extends Component {
+// create classful component
+class ResetPasswordButton extends Component {
 
+    // method to route to another screen
     resetPassword = () => {
         const navigationAction = NavigationActions.navigate({
-            routeName: "Main",
+            routeName: "Home",
         });
         this.props.navigation.dispatch(navigationAction);
     }
 
     render() {
-
+        // button with logic to call method to route to another screen 
         return (
             <Button onPress={this.resetPassword} style={styles.resetPassword} title="Reset password"
             />
@@ -22,6 +24,10 @@ export default class ResetPasswordButton extends Component {
     }
 }
 
+// export component withNavigation method which will pass props
+export default withNavigation(ResetPasswordButton);
+
+// styling
 const styles = StyleSheet.create({
     resetPassword: {
         marginTop: 40,

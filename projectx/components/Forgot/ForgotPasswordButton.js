@@ -1,11 +1,13 @@
+// required imports and dependencies
 import React, { Component } from 'react';
-import { StyleSheet, Text, Linking, View } from 'react-native';
-import { Container, Header, Content, Form, Item, Input, Label } from 'native-base';
+import { StyleSheet } from 'react-native';
 import { Button } from 'react-native-elements';
-import { NavigationActions } from "react-navigation";
+import { NavigationActions, withNavigation } from "react-navigation";
 
-export default class ForgotPasswordButton extends Component {
+// create classful component
+class ForgotPasswordButton extends Component {
 
+    // method to route to another screen
     goToForgot = () => {
         const navigationAction = NavigationActions.navigate({
             routeName: "Forgot",
@@ -14,7 +16,7 @@ export default class ForgotPasswordButton extends Component {
     }
 
     render() {
-
+        // button with logic to call method to route to another screen 
         return (
             <Button onPress={this.goToForgot} style={styles.forgotPasswordButton} title="Forgot password"
             />
@@ -22,6 +24,10 @@ export default class ForgotPasswordButton extends Component {
     }
 }
 
+// export component withNavigation method which will pass props
+export default withNavigation(ForgotPasswordButton);
+
+// styling
 const styles = StyleSheet.create({
     forgotPasswordButton: {
         marginTop: 10,
