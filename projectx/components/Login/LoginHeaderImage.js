@@ -1,11 +1,13 @@
+// required imports and dependencies
 import React, { Component } from "react";
-import { ActivityIndicator } from 'react-native';
 import { Image } from 'react-native-elements';
 import { StyleSheet, View } from 'react-native'
 
+// create classful component
 export default class LoginHeaderImage extends Component {
     render() {
         return (
+            // image
             <View style={styles.container}>
                 <Image source={require("../../assets/images/icon.png")} />
             </View>
@@ -13,6 +15,7 @@ export default class LoginHeaderImage extends Component {
     }
 }
 
+// styling
 const styles = StyleSheet.create({
     container: {
         justifyContent: "center",

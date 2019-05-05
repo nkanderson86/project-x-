@@ -2,6 +2,7 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 import HomeScreen from '../screens/HomeScreen';
 import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
 import SignupScreen from '../screens/SignupScreen';
+// import DashboardScreen from '../screens/DashboardScreen';
 
 const HomeStack = createStackNavigator({
     // Home is our route
@@ -10,6 +11,7 @@ const HomeStack = createStackNavigator({
     Home: HomeScreen,
     Forgot: ForgotPasswordScreen,
     Signup: SignupScreen,
+    // Dashboard: DashboardScreen,
 
 });
 
