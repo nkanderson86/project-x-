@@ -7,7 +7,7 @@ import { withNavigation } from 'react-navigation';
 // import Icon from 'react-native-vector-icons/FontAwesome';
 
 // create classful component
-class SignupScreen extends Component {
+export default class SignupScreen extends Component {
     // title for screen
     static navigationOptions = {
         title: 'Signup',
@@ -31,4 +31,4 @@ class SignupScreen extends Component {
 }
 
 // export component withNavigation method which will pass props
-export default withNavigation(SignupScreen);
+// export default withNavigation(SignupScreen);
