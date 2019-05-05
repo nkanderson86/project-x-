@@ -10,7 +10,7 @@ const HomeStack = createStackNavigator({
     // like add device page
     Home: HomeScreen,
     Forgot: ForgotPasswordScreen,
-    Signup: SignupScreen,
+    Signp: SignupScreen,
     // Dashboard: DashboardScreen,
 
 });

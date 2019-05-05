@@ -3,23 +3,24 @@ import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 
 import TabBarIcon from '../components/TabBarIcon';
-import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
-import SettingsScreen from '../screens/SettingsScreen';
+import DashboardScreen from '../screens/DashboardScreen';
+// import LinksScreen from '../screens/LinksScreen';
+// import SettingsScreen from '../screens/SettingsScreen';
 
-const HomeStack = createStackNavigator({
-  // Home is our route
-  // we can use navigation actions to route to home route or other routes., 
-  // like add device page
-  Home: HomeScreen,
+// const HomeStack = createStackNavigator({
+//   // Home is our route
+//   // we can use navigation actions to route to home route or other routes., 
+//   // like add device page
+//   Home: HomeScreen,
+// });
+
+const DashboardStack = createStackNavigator({
+  Dashboard: DashboardScreen,
 });
 
-const LinksStack = createStackNavigator({
-  Links: LinksScreen,
-});
-
-LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
+// creates the tab label at the bottom of the screen, can create more to toggle, here as a placeholder to see if we want to go this route with the design
+DashboardStack.navigationOptions = {
+  tabBarLabel: 'Dashboard',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -28,22 +29,7 @@ LinksStack.navigationOptions = {
   ),
 };
 
-const SettingsStack = createStackNavigator({
-  Settings: SettingsScreen,
-});
-
-SettingsStack.navigationOptions = {
-  tabBarLabel: 'Settings',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'}
-    />
-  ),
-};
-
+// bottom tabs
 export default createBottomTabNavigator({
-  // HomeStack,
-  LinksStack,
-  SettingsStack,
+  DashboardStack,
 });
