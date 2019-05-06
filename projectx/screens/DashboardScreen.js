@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { Container, Content } from 'native-base';
 import Devices from "../components/Dashboard/Devices";
-import Rows from "../components/Rows"
+import DeviceRow from "../components/Rows"
 import { withNavigation } from 'react-navigation';
 // import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -19,8 +19,7 @@ class DashboardScreen extends Component {
             // container for components
             <Container>
                 {/* devices acordian element, could inject statuses and add new device? */}
-                <Devices />
-                <Rows />
+                <DeviceRow />
             </Container>
 
         );
