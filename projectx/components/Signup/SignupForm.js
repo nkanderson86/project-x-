@@ -14,6 +14,10 @@ class SignupForm extends Component {
             // form for user input
             <Form style={styles.signupContainer}>
                 <Item style={styles.signupField} floatingLabel last>
+                    <Label>Device ID</Label>
+                    <Input />
+                </Item>
+                <Item style={styles.signupField} floatingLabel last>
                     <Label>Set Username</Label>
                     <Input />
                 </Item>
