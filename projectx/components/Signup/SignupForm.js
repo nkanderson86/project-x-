@@ -19,12 +19,15 @@ class SignupForm extends Component {
         let id = Math.floor(Math.random() * (10000) + 1000)
         console.log("ID " + id)
         this.setState({ deviceId: id })
-        console.log("set state: " + this.state.deviceId)
     }
 
-    componentDidMount() {
+    componentDidMount = () => {
         this.generateDeviceId();
-        console.log("working" + this.state.deviceId)
+        // console.log("working" + this.state.deviceId)
+    }
+
+    componentDidUpdate = () => {
+        console.log(this.state)
     }
 
     render() {
@@ -34,7 +37,7 @@ class SignupForm extends Component {
             <Form style={styles.signupContainer}>
                 <Item style={styles.signupField} floatingLabel last>
                     <Label>Device ID</Label>
-                    {/* <Text> {this.state.deviceId} </Text> */}
+                    <Text> {this.id} </Text>
                 </Item>
                 <Item style={styles.signupField} floatingLabel last>
                     <Label>Set Username</Label>
