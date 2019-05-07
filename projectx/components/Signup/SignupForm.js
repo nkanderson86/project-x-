@@ -31,23 +31,13 @@ class SignupForm extends Component {
         console.log(this.state)
     }
 
-    signUp = () => {
-        API.registerUser(this.state)
-        const navigateAction = NavigationActions.navigate({
-            routeName: "Home",
-        });
-        this.props.navigation.dispatch(navigateAction);
-        // this.props.navigation.goBack();
-    }
-
     render() {
-
         return (
             // form for user input
             <Form style={styles.signupContainer}>
-                <Item style={styles.signupField} floatingLabel last>
+                <Item style={styles.signupField} stackedLabel last>
                     <Label>Device ID</Label>
-                    <Text> {this.id} </Text>
+                    <Input value={`${this.state.deviceId}`} />
                 </Item>
                 <Item style={styles.signupField} floatingLabel last>
                     <Label>Set Username</Label>
@@ -58,7 +48,7 @@ class SignupForm extends Component {
                     <Input secureTextEntry={true} onChangeText={(value) => this.setState({ password: value })} />
                 </Item>
                 {/* button to route user, input logic to create account on component CreateAccountButton.js */}
-                <CreateAccountButton onPress={() => this.signUp()} />
+                <CreateAccountButton />
             </Form>
         );
     }
