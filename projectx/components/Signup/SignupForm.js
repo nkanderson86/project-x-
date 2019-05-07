@@ -2,8 +2,9 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text } from 'react-native';
 import { Form, Item, Input, Label } from 'native-base';
-import CreateAccountButton from "./CreateAccountButton"
-import { withNavigation } from 'react-navigation';
+import { Button } from 'react-native-elements';
+// import CreateAccountButton from "./CreateAccountButton"
+import { NavigationActions, withNavigation } from 'react-navigation';
 import API from '../../utils/API';
 
 // create classful component
@@ -32,7 +33,14 @@ class SignupForm extends Component {
     }
 
     signUp = () => {
-        API.registerUser(this.state)
+        const { username, password, deviceId } = this.state
+
+        const newUser = { username, password, deviceId }
+
+        API.registerUser(newUser)
+            .then(res => console.log("Signed Up"))
+            .catch(err => console.log('LOGIN ERROR: ', err))
+        console.log("request sent!")
         const navigateAction = NavigationActions.navigate({
             routeName: "Home",
         });
@@ -47,7 +55,7 @@ class SignupForm extends Component {
             <Form style={styles.signupContainer}>
                 <Item style={styles.signupField} floatingLabel last>
                     <Label>Device ID</Label>
-                    <Text> {this.id} </Text>
+                    <Text> {this.state.id} </Text>
                 </Item>
                 <Item style={styles.signupField} floatingLabel last>
                     <Label>Set Username</Label>
@@ -58,7 +66,7 @@ class SignupForm extends Component {
                     <Input secureTextEntry={true} onChangeText={(value) => this.setState({ password: value })} />
                 </Item>
                 {/* button to route user, input logic to create account on component CreateAccountButton.js */}
-                <CreateAccountButton onPress={() => this.signUp()} />
+                <Button style={styles.createAccount} onPress={this.signUp} title="Create Account" />
             </Form>
         );
     }
@@ -84,4 +92,9 @@ const styles = StyleSheet.create({
         marginRight: 20,
         marginLeft: 20
     },
+    createAccount: {
+        marginTop: 40,
+        marginRight: 20,
+        marginLeft: 20
+    }
 });

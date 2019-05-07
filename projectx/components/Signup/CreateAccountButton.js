@@ -9,6 +9,7 @@ class CreateAccountButton extends Component {
 
     // method to route to another screen
     createAccount = () => {
+        console.log("Calling the function")
         const navigationAction = NavigationActions.navigate({
             routeName: "Home",
         });
