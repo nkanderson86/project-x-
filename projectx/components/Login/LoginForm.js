@@ -10,6 +10,12 @@ import SignupButton from "../Signup/SignupButton"
 // create classful component
 class LoginForm extends Component {
 
+    state = {
+        username: '',
+        password: ''
+
+    }
+
     render() {
 
         return (
@@ -17,11 +23,11 @@ class LoginForm extends Component {
             <Form style={styles.loginContainer}>
                 <Item style={styles.loginField} floatingLabel last>
                     <Label>Username</Label>
-                    <Input />
+                    <Input onChangeText={(value) => this.setState({ username: value })} />
                 </Item>
                 <Item style={styles.loginField} floatingLabel last>
                     <Label>Password</Label>
-                    <Input />
+                    <Input secureTextEntry={true} onChangeText={(value) => this.setState({ password: value })} />
                 </Item>
                 {/* button to route user, if authenticated, to dashboard, input login in component to check auth */}
                 <LoginButton />
