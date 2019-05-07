@@ -55,7 +55,7 @@ class SignupForm extends Component {
             <Form style={styles.signupContainer}>
                 <Item style={styles.signupField} floatingLabel last>
                     <Label>Device ID</Label>
-                    <Text> {this.state.id} </Text>
+                    <Text> {$(this.state.id)} </Text>
                 </Item>
                 <Item style={styles.signupField} floatingLabel last>
                     <Label>Set Username</Label>
