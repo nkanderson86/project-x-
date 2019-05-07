@@ -29,4 +29,4 @@ class HomeScreen extends Component {
 }
 
 // export component withNavigation method which will pass props
-export default HomeScreen;
+export default withNavigation(HomeScreen);
