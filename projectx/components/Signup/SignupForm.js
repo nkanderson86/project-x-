@@ -49,13 +49,12 @@ class SignupForm extends Component {
     }
 
     render() {
-
         return (
             // form for user input
             <Form style={styles.signupContainer}>
-                <Item style={styles.signupField} floatingLabel last>
+                <Item style={styles.signupField} stackedLabel last>
                     <Label>Device ID</Label>
-                    <Text> {$(this.state.id)} </Text>
+                    <Input value={`${this.state.deviceId}`} />
                 </Item>
                 <Item style={styles.signupField} floatingLabel last>
                     <Label>Set Username</Label>
