@@ -7,7 +7,7 @@ import { withNavigation } from 'react-navigation';
 // import Icon from 'react-native-vector-icons/FontAwesome';
 
 // create classful component
-export default class ForgotPasswordScreen extends Component {
+class ForgotPasswordScreen extends Component {
     // title for screen
     static navigationOptions = {
         title: 'Forgot Password',
@@ -30,4 +30,4 @@ export default class ForgotPasswordScreen extends Component {
 }
 
 // export component withNavigation method which will pass props
-// export default withNavigation(ForgotPasswordScreen);
+export default withNavigation(ForgotPasswordScreen);

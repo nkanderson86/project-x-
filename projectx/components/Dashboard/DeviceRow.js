@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Container } from 'react-native';
 import { Table, TableWrapper, Row, Cell } from 'react-native-table-component';
 import { NavigationActions, withNavigation } from "react-navigation";
 import { CheckBox } from 'react-native-elements';
+import LoginHeaderImage from "../Login/LoginHeaderImage"
 
+// put  device id in state and hide it from user and then populate 
 class DeviceRow extends Component {
     constructor(props) {
         super(props);
@@ -12,13 +14,23 @@ class DeviceRow extends Component {
             tableData: [
                 ['Plant 1', 'Good', ''],
                 ['Plant 2', 'Err', ''],
-            ]
+            ],
+            // deviceData: [
+            //     ["1"],
+            //     ["2"],
         }
     }
 
-    goToSignup() {
+    componentDidMount() {
+        // hit database and get user device information that has been input
+        // which will incliude name, populate status in index 1, device id hidden
+        //
+    }
+
+    goToEditDevice() {
         const navigationAction = NavigationActions.navigate({
-            routeName: "Signup",
+            routeName: "EditDevice",
+            params: { data: this.state.tableData[0] }
         });
         this.props.navigation.dispatch(navigationAction);
     }
@@ -26,13 +38,14 @@ class DeviceRow extends Component {
     render() {
         const state = this.state;
         const element = () => (
-            <CheckBox center iconType='material' uncheckedIcon='add' checked={this.state.checked} onPress={() => this.goToSignup()} />
+            <CheckBox center iconType='material' uncheckedIcon='add' checked={this.state.checked} onPress={() => this.goToEditDevice()} />
         );
 
-
         return (
-            <View style={styles.container}>
-                <Table borderStyle={{ borderColor: 'black' }}>
+
+            < View style={styles.container} >
+                <LoginHeaderImage />
+                <Table borderStyle={{ borderColor: 'black' }} style={{ marginTop: 20 }}>
                     <Row data={state.tableHead} style={styles.head} textStyle={styles.text} />
                     {
                         state.tableData.map((rowData, index) => (
@@ -46,7 +59,8 @@ class DeviceRow extends Component {
                         ))
                     }
                 </Table>
-            </View>
+            </View >
+            // </Container>
         )
     }
 }
@@ -54,8 +68,9 @@ class DeviceRow extends Component {
 export default withNavigation(DeviceRow);
 
 const styles = StyleSheet.create({
-    container: { flex: 1, marginLeft: 10, marginRight: 10, marginTop: 10, backgroundColor: '#fff' },
+    container: { flex: 1, marginLeft: 10, marginRight: 10, marginTop: 0, backgroundColor: '#fff' },
     head: { height: 40, backgroundColor: '#FFFFFF' },
     text: { margin: 6 },
     row: { flexDirection: 'row', backgroundColor: '#E8E8E8' },
+
 });

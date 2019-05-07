@@ -1,9 +1,9 @@
 import React from 'react';
 import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
-
 import TabBarIcon from '../components/TabBarIcon';
 import DashboardScreen from '../screens/DashboardScreen';
+import EditDeviceScreen from '../screens/EditDeviceScreen';
 // import LinksScreen from '../screens/LinksScreen';
 // import SettingsScreen from '../screens/SettingsScreen';
 
@@ -16,6 +16,7 @@ import DashboardScreen from '../screens/DashboardScreen';
 
 const DashboardStack = createStackNavigator({
   Dashboard: DashboardScreen,
+  EditDevice: EditDeviceScreen
 });
 
 // creates the tab label at the bottom of the screen, can create more to toggle, here as a placeholder to see if we want to go this route with the design
