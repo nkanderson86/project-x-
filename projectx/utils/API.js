@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const api_url = "http://"
+const api_url = "https://nameless-reef-34646.herokuapp.com"
 
 export default {
     login: (userObj) => {

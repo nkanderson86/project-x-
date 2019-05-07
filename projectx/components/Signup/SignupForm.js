@@ -4,6 +4,7 @@ import { StyleSheet, Text } from 'react-native';
 import { Form, Item, Input, Label } from 'native-base';
 import CreateAccountButton from "./CreateAccountButton"
 import { withNavigation } from 'react-navigation';
+import API from '../../utils/API';
 
 // create classful component
 class SignupForm extends Component {
@@ -30,6 +31,15 @@ class SignupForm extends Component {
         console.log(this.state)
     }
 
+    signUp = () => {
+        API.registerUser(this.state)
+        const navigateAction = NavigationActions.navigate({
+            routeName: "Home",
+        });
+        this.props.navigation.dispatch(navigateAction);
+        // this.props.navigation.goBack();
+    }
+
     render() {
 
         return (
@@ -48,7 +58,7 @@ class SignupForm extends Component {
                     <Input secureTextEntry={true} onChangeText={(value) => this.setState({ password: value })} />
                 </Item>
                 {/* button to route user, input logic to create account on component CreateAccountButton.js */}
-                <CreateAccountButton />
+                <CreateAccountButton onPress={() => this.signUp()} />
             </Form>
         );
     }
