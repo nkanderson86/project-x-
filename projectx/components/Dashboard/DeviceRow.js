@@ -38,7 +38,7 @@ class DeviceRow extends Component {
     render() {
         const state = this.state;
         const element = () => (
-            <CheckBox center iconType='material' uncheckedIcon='add' checked={this.state.checked} onPress={() => this.goToEditDevice()} />
+            <CheckBox center iconType='material' uncheckedIcon='add' checked={this.state.checked} onPress={() => this.goToEditDevice(this.state.tableData[0])} />
         );
 
         return (
