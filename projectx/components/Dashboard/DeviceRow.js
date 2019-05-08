@@ -6,8 +6,6 @@ import { CheckBox } from 'react-native-elements';
 import LoginHeaderImage from "../Login/LoginHeaderImage";
 import API from '../../utils/API'
 import UserSetup from '../userAuthListener'
-// import Axios from "axios";
-// import Pusher from "pusher-js/react-native"
 
 // put  device id in state and hide it from user and then populate 
 class DeviceRow extends Component {
@@ -29,13 +27,14 @@ class DeviceRow extends Component {
 
     componentDidMount() {
         // inceptor to add userId to headers in order to make API calls as an authenticated user
-        UserSetup(this.state.UID, this.setState)
+        const setState = this.setState.bind(this)
+        UserSetup(this.state.UID, setState)
 
         // hit database and get user device information that has been input
         // which will incliude name, populate status in index 1, device id hidden
-        API.getArduinos()
-            .then(res => console.log(res.data))
-            .catch(err => console.log('LOGIN ERROR: ', err))
+        // API.getArduinos()
+        //     .then(res => console.log(res.data))
+        //     .catch(err => console.log('LOGIN ERROR: ', err))
     }
 
     goToEditDevice(index) {

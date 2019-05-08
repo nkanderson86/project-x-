@@ -1,5 +1,6 @@
 import Axios from "axios";
 import Pusher from "pusher-js/react-native"
+import API from './../utils/API'
 
 
 function UserSetup(UID, cb) {
@@ -22,13 +23,29 @@ function UserSetup(UID, cb) {
         if (data.id === UID) {
             API.getArduinos()
                 .then(res => {
-                    console.log(res.data)
+                    console.log(res.data.piDevice.arduinos)
+                    let arduinos = res.data.piDevice.arduinos
                     let tableData = []
+                    arduinos.forEach(arduino => {
+                        tableData.push([arduino.plantName, arduino.status, 'test'])
+                    })
                     cb({ tableData: tableData })
                 })
-                .catch(err => console.log('LOGIN ERROR: ', err))
+                .catch(err => console.log('UAL Error: ', err))
         }
     })
+
+    API.getArduinos()
+        .then(res => {
+            console.log(res.data.piDevice.arduinos)
+            let arduinos = res.data.piDevice.arduinos
+            let tableData = []
+            arduinos.forEach(arduino => {
+                tableData.push([arduino.plantName, arduino.status, 'test'])
+            })
+            cb({ tableData: tableData })
+        })
+        .catch(err => console.log('UAL Error: ', err))
 }
 
 export default UserSetup;
