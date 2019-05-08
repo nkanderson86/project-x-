@@ -12,7 +12,8 @@ import EditScheduleModal from "../EditDevice/EditScheduleModal"
 class EditDeviceForm extends Component {
 
     state = {
-        name: this.props.navigation.state.params.data
+        name: this.props.navigation.state.params.data,
+        UID: this.props.navigation.state.params.UID
     }
 
     componentDidUpdate = () => {
