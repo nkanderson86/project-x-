@@ -1,9 +1,10 @@
 // required imports and dependencies
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import { Container, Content, Form, Item, Input, Label } from 'native-base';
 import { withNavigation } from 'react-navigation';
-import AddScheduleModal from "../AddDevice/AddScheduleModal"
+import AddScheduleModal from "./AddScheduleModal"
+import ViewSchedule from "../AddDevice/ViewSchedule"
 
 // import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -13,6 +14,18 @@ class AddDeviceForm extends Component {
     static navigationOptions = {
         title: 'Add Device',
     };
+
+    state = {
+        schedule: []
+    }
+
+    addSchedule = (newSchedule) => {
+        let schedule2 = this.state.schedule.map(a => a)
+        schedule2.push(newSchedule)
+        this.setState({
+            schedule: schedule2
+        })
+    }
 
     render() {
 
@@ -31,7 +44,11 @@ class AddDeviceForm extends Component {
                     {/* button to route user, input logic to create account on component CreateAccountButton.js */}
                 </Form>
                 <View style={styles.addScheduleModal}>
-                    <AddScheduleModal />
+                    <AddScheduleModal addToSchedule={this.addSchedule} />
+                </View>
+
+                <View>
+                    {this.state.schedule.map((a, i) => <ViewSchedule schedule={a} key={i} />)}
                 </View>
             </Container >
 

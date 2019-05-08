@@ -12,6 +12,9 @@ export default {
     },
     registerUser: (userObj) => {
         return axios.post(`${api_url}/api/register`, userObj)
+    },
+    setSchedule: (scheduleObj) => {
+        return axios.post(`${api_url}/api/schedule`, scheduleObj)
     }
 
 }

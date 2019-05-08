@@ -1,33 +1,41 @@
 import React, { Component } from 'react';
-import { Modal, Text, TouchableHighlight, View, Alert, StyleSheet, Picker, Switch } from 'react-native';
+import { Modal, Text, TouchableHighlight, View, Alert, StyleSheet, Picker } from 'react-native';
 import { Button, CheckBox } from 'react-native-elements';
+import LoginHeaderImage from '../Login/LoginHeaderImage';
+import API from '../../utils/API';
 
 class AddScheduleModal extends Component {
 
     state = {
         modalVisible: false,
         switchValue: false,
+        day: "Monday",
+        amount: "0.25",
+        time: "00:01"
     };
-
-    toggleSwitch = (value) => {
-        //onValueChange of the switch this function will be called
-        this.setState({ switchValue: value })
-        //state changes according to switch
-        //which will result in re-render the text
-    }
 
     setModalVisible(visible) {
         this.setState({ modalVisible: visible });
     }
 
+    setSchedule = () => {
+        const { day, amount, time } = this.state
+        const newSchedule = { day, amount, time }
+        console.log("NEW SCHEDULE: ", newSchedule)
+        this.props.addToSchedule(newSchedule);
+        // API.setSchedule(newSchedule)
+        //     .then(res => console.log("Schedule added"))
+        //     .catch(err => console.log('SCHEDULE ERROR: ', err))
+        // console.log("request sent!");
+
+        this.setModalVisible(!this.state.modalVisible);
+
+    }
+
     render() {
 
-        // const element = () => (
-        //     <CheckBox center title="Monday" checked={this.state.checked} value="Monday" />
-        // );
-
         return (
-            <View style={styles.addScheduleModal}>
+            <View >
                 <Modal
                     animationType="fade"
                     presentationStyle="fullScreen"
@@ -36,34 +44,89 @@ class AddScheduleModal extends Component {
                     onRequestClose={() => {
                         Alert.alert('Modal has been closed.');
                     }}>
-                    <View style={styles.scheduleModal}>
-                        <View style={{ flexDirection: 'column' }}>
+                    <View>
+                        <View style={styles.modalImage} >
+                            <LoginHeaderImage />
+                        </View>
+                        <View style={styles.inputFlex}>
+                            <View style={styles.modalPickerDay}>
+                                <Picker
+                                    selectedValue={this.state.day}
+                                    onValueChange={(dayValue, itemIndex) =>
+                                        this.setState({ day: dayValue })
+                                    }>
+                                    <Picker.Item label="Monday" value="Monday" />
+                                    <Picker.Item label="Tuesday" value="Tuesday" />
+                                    <Picker.Item label="Wednesday" value="Wednesday" />
+                                    <Picker.Item label="Thursday" value="Thursday" />
+                                    <Picker.Item label="Friday" value="Friday" />
+                                    <Picker.Item label="Saturday" value="Saturday" />
+                                    <Picker.Item label="Sunday" value="Sunday" />
+                                </Picker>
+                                {console.log("day:", this.state.day)
+                                }
 
+                            </View>
+                            <View style={styles.modalPickerWaterAmount}>
+                                <Picker
+                                    selectedValue={this.state.amount}
+                                    onValueChange={(waterAmountValue, itemIndex) =>
+                                        this.setState({ amount: waterAmountValue })
+                                    }>
+                                    <Picker.Item label="0.25 cups" value="0.25" />
+                                    <Picker.Item label="0.5 cups" value="0.5" />
+                                    <Picker.Item label="1 cup" value="1" />
+                                    <Picker.Item label="1.5 cups" value="1.5" />
+                                    <Picker.Item label="2 cups" value="2" />
+                                    <Picker.Item label="2.5 cups" value="2.5" />
+                                    <Picker.Item label="3 cups" value="3" />
+                                    <Picker.Item label="3.5 cups" value="3.5" />
+                                    <Picker.Item label="4 cups" value="4" />
+                                </Picker>
+                                {console.log("water amount:", this.state.amount)
+                                }
+                            </View>
+
+                            <View style={styles.modalPickerTime}>
+                                <Picker
+                                    selectedValue={this.state.time}
+                                    onValueChange={(timeValue, itemIndex) =>
+                                        this.setState({ time: timeValue })
+                                    }>
+                                    <Picker.Item label="00:01" value="00:01" />
+                                    <Picker.Item label="01:00" value="01:00" />
+                                    <Picker.Item label="02:00" value="02:00" />
+                                    <Picker.Item label="03:00" value="03:00" />
+                                    <Picker.Item label="04:00" value="04:00" />
+                                    <Picker.Item label="05:00" value="05:00" />
+                                    <Picker.Item label="06:00" value="06:00" />
+                                    <Picker.Item label="07:00" value="07:00" />
+                                    <Picker.Item label="08:00" value="08:00" />
+                                    <Picker.Item label="09:00" value="09:00" />
+                                    <Picker.Item label="10:00" value="10:00" />
+                                    <Picker.Item label="11:00" value="11:00" />
+                                    <Picker.Item label="12:00" value="12:00" />
+                                    <Picker.Item label="13:00" value="13:00" />
+                                    <Picker.Item label="14:00" value="14:00" />
+                                    <Picker.Item label="15:00" value="15:00" />
+                                    <Picker.Item label="16:00" value="16:00" />
+                                    <Picker.Item label="17:00" value="17:00" />
+                                    <Picker.Item label="18:00" value="18:00" />
+                                    <Picker.Item label="19:00" value="19:00" />
+                                    <Picker.Item label="20:00" value="20:00" />
+                                    <Picker.Item label="21:00" value="21:00" />
+                                    <Picker.Item label="22:00" value="22:00" />
+                                    <Picker.Item label="23:00" value="23:00" />
+                                </Picker>
+                                {console.log("time:", this.state.time)
+                                }
+                            </View>
                         </View>
 
-                        <View style={{ flexDirection: 'column' }}>
-                            {/*Text to show the text according to switch condition*/}
-                            <Text>{this.state.switchValue ? 'Monday' : 'No Monday'}</Text>
-                            {/*Switch with value set in constructor*/}
-                            {/*onValueChange will be triggered after switch condition changes*/}
-                            <Switch
-                                label="Monday"
-                                style={{ marginTop: 30 }}
-                                onValueChange={this.toggleSwitch}
-                                value={this.state.switchValue}
-                                selectedValue={this.state.switchValue} />
-                            {console.log("Value", this.state.switchValue)
-                            }
-                        </View>
+                        <Button title="Save Schedule" style={styles.saveModalButton} onPress={this.setSchedule} />
 
-                        <View>
-                            <Button title="Save Schedule" style={styles.showModalButton} onPress={() => {
-                                this.setModalVisible(!this.state.modalVisible);
-                            }} />
-                        </View>
                     </View>
                 </Modal>
-
 
                 <Button title="Set Schedule" style={styles.showModalButton} onPress={() => {
                     this.setModalVisible(true);
@@ -75,15 +138,9 @@ class AddScheduleModal extends Component {
 export default AddScheduleModal;
 
 const styles = StyleSheet.create({
-    addScheduleModal: {
-        alignItems: "center"
-    },
 
-    scheduleModal: {
-        alignItems: "center",
-        marginTop: 40,
-        marginRight: 20,
-        marginLeft: 20,
+    modalImage: {
+        marginTop: 80,
     },
 
     showModalButton: {
@@ -92,7 +149,61 @@ const styles = StyleSheet.create({
         marginLeft: 20
     },
 
+    // modalText: {
+    //     fontSize: 20,
+    //     height: 50,
+    //     width: 75,
+    // },
+
+    inputFlex: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: "stretch",
+        marginLeft: 20,
+        marginRight: 20,
+    },
+
+    // inputFlex: {
+    //     flex: 1,
+    //     flexDirection: 'row',
+    //     justifyContent: 'center',
+    //     alignItems: "center",
+    //     marginLeft: 20,
+    //     marginRight: 20,
+    // },
+
+    modalPickerDay: {
+        height: 50,
+        width: 80,
+        marginLeft: 0,
+        marginRight: 5,
+    },
+
+    modalPickerWaterAmount: {
+        height: 50,
+        width: 100,
+        marginLeft: 5,
+        marginRight: 5,
+    },
+
+    modalPickerTime: {
+        height: 50,
+        width: 80,
+        marginLeft: 5,
+        marginRight: 0,
+    },
+
+    saveModalButton: {
+        marginTop: 40,
+        marginRight: 20,
+        marginLeft: 20,
+    },
+
 });
+//import css grid react native easy grid
+//import , container, nested pickers and button, first row - pickers
+// second row -- button
 
 // //  {/* <Picker
 // selectedValue={this.state.language}

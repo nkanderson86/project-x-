@@ -47,9 +47,11 @@ class LoginForm extends Component {
 
         console.log(userObj)
 
-        API.login(userObj)
-            .then(res => this.goToDashboard())
-            .catch(err => console.log('LOGIN ERROR: ', err))
+        this.goToDashboard()
+
+        // API.login(userObj)
+        //     .then(res => this.goToDashboard())
+        //     .catch(err => console.log('LOGIN ERROR: ', err))
 
     }
 

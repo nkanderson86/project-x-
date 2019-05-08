@@ -4,7 +4,7 @@ import { StyleSheet, Button } from 'react-native';
 import { Container, Content, Form, Item, Input, Label } from 'native-base';
 import { withNavigation } from 'react-navigation';
 import LoginHeaderImage from '../components/Login/LoginHeaderImage';
-import AddDeviceForm from "../components/AddDevice/AddDevice";
+import AddDeviceForm from "../components/AddDevice/AddDeviceForm";
 // import Icon from 'react-native-vector-icons/FontAwesome';
 
 // create classful component
