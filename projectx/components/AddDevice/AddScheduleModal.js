@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Modal, Text, TouchableHighlight, View, Alert } from 'react-native';
-import { StyleSheet, Button } from 'react-native';
+import { Modal, Text, TouchableHighlight, View, Alert, StyleSheet, CheckBox, Picker } from 'react-native';
+import { Button } from 'react-native-elements';
 
 class AddScheduleModal extends Component {
+
     state = {
         modalVisible: false,
     };
@@ -12,8 +13,13 @@ class AddScheduleModal extends Component {
     }
 
     render() {
+
+        // const element = () => (
+        //     <CheckBox center title="Monday" checked={this.state.checked} value="Monday" />
+        // );
+
         return (
-            <View style={{ marginTop: 22 }}>
+            <View style={styles.addScheduleModal}>
                 <Modal
                     animationType="fade"
                     presentationStyle="fullScreen"
@@ -22,46 +28,59 @@ class AddScheduleModal extends Component {
                     onRequestClose={() => {
                         Alert.alert('Modal has been closed.');
                     }}>
-                    <View style={{ marginTop: 100, marginLeft: 20 }}>
-                        <View>
-                            <Text>Hello World!</Text>
+                    <View style={styles.scheduleModal}>
+                        <View style={{ flexDirection: 'column' }}>
+                            <View style={{ flexDirection: 'row' }}>
+                                <CheckBox center title="Monday" checked={this.state.checked}
+                                    onClick={() => this.setState({ checked: !this.state.checked })} />
+                            </View>
 
-                            <TouchableHighlight
-                                onPress={() => {
-                                    this.setModalVisible(!this.state.modalVisible);
-                                }}>
-                                <Text>Save Schedule</Text>
-                            </TouchableHighlight>
+                        </View>
+
+                        <View>
+                            <Button title="Save Schedule" style={styles.showModalButton} onPress={() => {
+                                this.setModalVisible(!this.state.modalVisible);
+                            }} />
                         </View>
                     </View>
                 </Modal>
 
-                <TouchableHighlight
-                    onPress={() => {
-                        this.setModalVisible(true);
-                    }}>
-                    <Text>Show Modal</Text>
-                </TouchableHighlight>
-            </View>
+
+                <Button title="Set Schedule" style={styles.showModalButton} onPress={() => {
+                    this.setModalVisible(true);
+                }} />
+            </View >
         );
     }
 }
 export default AddScheduleModal;
 
 const styles = StyleSheet.create({
-    editDeviceContainer: {
-        marginTop: 20,
+    addScheduleModal: {
+        alignItems: "center"
     },
 
-    editDeviceField: {
+    scheduleModal: {
+        alignItems: "center",
+        marginTop: 40,
         marginRight: 20,
         marginLeft: 20,
-        marginTop: 20
     },
 
-    editDeviceSaveButton: {
+    showModalButton: {
         marginTop: 40,
         marginRight: 20,
         marginLeft: 20
     },
+
 });
+
+// //  {/* <Picker
+// selectedValue={this.state.language}
+// style={{ height: 50, width: 100, marginTop: 30 }}
+// onValueChange={(itemValue, itemIndex) =>
+//     this.setState({ language: itemValue })
+// }>
+// <Picker.Item label="Java" value="java" />
+// <Picker.Item label="JavaScript" value="js" />
+// </Picker> */}
