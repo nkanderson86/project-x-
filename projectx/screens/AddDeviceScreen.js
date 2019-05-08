@@ -1,6 +1,6 @@
 // required imports and dependencies
 import React, { Component } from 'react';
-import { StyleSheet, Button } from 'react-native';
+import { StyleSheet, Button, Text } from 'react-native';
 import { Container, Content, Form, Item, Input, Label } from 'native-base';
 import { withNavigation } from 'react-navigation';
 import LoginHeaderImage from '../components/Login/LoginHeaderImage';

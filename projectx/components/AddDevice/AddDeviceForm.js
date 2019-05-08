@@ -1,7 +1,8 @@
 // required imports and dependencies
 import React, { Component } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import { Container, Content, Form, Item, Input, Label } from 'native-base';
+import { Button } from 'react-native-elements';
+import { Container, Form, Item, Input, Label } from 'native-base';
 import { withNavigation } from 'react-navigation';
 import AddScheduleModal from "./AddScheduleModal"
 import ViewSchedule from "../AddDevice/ViewSchedule"
@@ -20,12 +21,14 @@ class AddDeviceForm extends Component {
     }
 
     addSchedule = (newSchedule) => {
-        let schedule2 = this.state.schedule.map(a => a)
-        schedule2.push(newSchedule)
+        let addedSchedule = this.state.schedule.map(a => a)
+        addedSchedule.push(newSchedule)
         this.setState({
-            schedule: schedule2
+            schedule: addedSchedule
         })
     }
+
+
 
     render() {
 
@@ -49,6 +52,10 @@ class AddDeviceForm extends Component {
 
                 <View>
                     {this.state.schedule.map((a, i) => <ViewSchedule schedule={a} key={i} />)}
+                </View>
+
+                <View>
+                    <Button title="Save Schedule" style={styles.saveScheduleButton} onPress={this.saveSchedule} />
                 </View>
             </Container >
 
@@ -81,6 +88,12 @@ const styles = StyleSheet.create({
     },
 
     addDeviceSaveButton: {
+        marginTop: 40,
+        marginRight: 20,
+        marginLeft: 20
+    },
+
+    saveScheduleButton: {
         marginTop: 40,
         marginRight: 20,
         marginLeft: 20

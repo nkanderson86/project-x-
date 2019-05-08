@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Modal, Text, TouchableHighlight, View, Alert, StyleSheet, Picker } from 'react-native';
-import { Button, CheckBox } from 'react-native-elements';
+import { Modal, Text, View, Alert, StyleSheet, Picker } from 'react-native';
+import { Button } from 'react-native-elements';
 import LoginHeaderImage from '../Login/LoginHeaderImage';
 import API from '../../utils/API';
 
@@ -123,7 +123,7 @@ class AddScheduleModal extends Component {
                             </View>
                         </View>
 
-                        <Button title="Save Schedule" style={styles.saveModalButton} onPress={this.setSchedule} />
+                        <Button title="Save" style={styles.saveModalButton} onPress={this.setSchedule} />
 
                     </View>
                 </Modal>

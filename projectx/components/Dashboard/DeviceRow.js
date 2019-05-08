@@ -13,10 +13,10 @@ class DeviceRow extends Component {
         super(props);
         console.log(props.navigation.state.params.data.UID);
         this.state = {
-            tableHead: ['Name', 'Status', 'Edit'],
+            tableHead: ['Name', 'Device ID', 'Status', 'Edit'],
             tableData: [
-                ['Plant 1', 'Status', ''],
-                ['Plant 2', 'Status', ''],
+                ['Plant 1', '', 'Status', ''],
+                ['Plant 2', '', 'Status', ''],
             ],
             UID: props.navigation.state.params.data.UID,
             // deviceData: [
@@ -28,7 +28,7 @@ class DeviceRow extends Component {
     componentDidMount() {
         // inceptor to add userId to headers in order to make API calls as an authenticated user
         const setState = this.setState.bind(this)
-        UserSetup(this.state.UID, setState)
+        //UserSetup(this.state.UID, setState)
 
         // hit database and get user device information that has been input
         // which will incliude name, populate status in index 1, device id hidden
@@ -64,7 +64,7 @@ class DeviceRow extends Component {
                             <TableWrapper key={index} style={styles.row}>
                                 {
                                     rowData.map((cellData, cellIndex) => (
-                                        <Cell key={cellIndex} data={cellIndex === 2 ? <CheckBox center iconType='material' uncheckedIcon='add' checked={this.state.checked} onPress={() => this.goToEditDevice(index)} /> : cellData} textStyle={styles.text} />
+                                        <Cell key={cellIndex} data={cellIndex === 3 ? <CheckBox center iconType='material' uncheckedIcon='add' checked={this.state.checked} onPress={() => this.goToEditDevice(index)} /> : cellData} textStyle={styles.text} />
                                     ))
                                 }
                             </TableWrapper>

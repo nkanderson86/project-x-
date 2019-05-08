@@ -6,7 +6,7 @@ class ViewSchedule extends Component {
     render() {
         return (
             <View>
-                <Text style={styles.scheduleText}>{this.props.schedule.day}   |  {this.props.schedule.time}   |   {this.props.schedule.amount}</Text>
+                <Text style={styles.scheduleText}>{this.props.schedule.day}   |  {this.props.schedule.time}   |   {this.props.schedule.amount} cups</Text>
             </View>
 
         )
