@@ -8,16 +8,9 @@ import { withNavigation } from 'react-navigation';
 
 // create classful component
 class EditDeviceForm extends Component {
-    // title for screen
-    // static navigationOptions = {
-    //     title: 'Edit Device',
-    // };
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            name: props.navigation.state.params.data[0]
-        }
+    state = {
+        name: this.props.navigation.state.params.data
     }
 
     render() {
