@@ -3,9 +3,11 @@ import React, { Component } from 'react';
 import { StyleSheet, Text } from 'react-native';
 import { Form, Item, Input, Label } from 'native-base';
 import { NavigationActions, withNavigation } from "react-navigation";
+import { Button } from 'react-native-elements';
 import LoginButton from "./LoginButton"
 import ForgotPasswordButton from "../Forgot/ForgotPasswordButton"
 import SignupButton from "../Signup/SignupButton"
+import API from '../../utils/API';
 
 // create classful component
 class LoginForm extends Component {
@@ -14,6 +16,35 @@ class LoginForm extends Component {
         username: '',
         password: ''
 
+    }
+
+    componentDidUpdate = () => {
+        console.log(this.state)
+    }
+
+    goToMain = (userObj) => {
+        const navigateAction = NavigationActions.navigate({
+            routeName: "Home",
+            // params: { data: userObj }
+        });
+        this.props.navigation.dispatch(navigateAction);
+        // this.props.navigation.goBack();
+    }
+
+    login = () => {
+
+        const { username, password } = this.state
+
+        const userObj = { username, password }
+
+        console.log(userObj)
+
+        API.login(userObj)
+            .then(res => console.log("Signed Up"))
+            .catch(err => console.log('LOGIN ERROR: ', err))
+
+        this.goToMain();
+        // .catch(err => console.log('LOGIN ERROR: ', err))
     }
 
     render() {
@@ -30,7 +61,7 @@ class LoginForm extends Component {
                     <Input secureTextEntry={true} onChangeText={(value) => this.setState({ password: value })} />
                 </Item>
                 {/* button to route user, if authenticated, to dashboard, input login in component to check auth */}
-                <LoginButton />
+                <Button onPress={this.login} style={styles.loginButton} title="Login" />
                 {/* button to route user to reset password */}
                 <ForgotPasswordButton title="Forgot" />
                 {/* button to route user to create an account */}

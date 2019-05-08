@@ -41,6 +41,7 @@ class SignupForm extends Component {
             .then(res => console.log("Signed Up"))
             .catch(err => console.log('LOGIN ERROR: ', err))
         console.log("request sent!")
+
         const navigateAction = NavigationActions.navigate({
             routeName: "Home",
         });
