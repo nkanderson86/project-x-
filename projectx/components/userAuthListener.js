@@ -2,8 +2,8 @@ import Axios from "axios";
 import Pusher from "pusher-js/react-native"
 import API from './../utils/API'
 
-
-function UserSetup(UID, cb) {
+// add third param 'page' here to feed switch statement.
+function UserSetup(UID, cb, page) {
     this.interceptor = Axios.interceptors.request.use(config => {
         if (UID) {
             config.headers = { user: UID }
@@ -18,34 +18,34 @@ function UserSetup(UID, cb) {
         forceTLS: true
     })
 
+    function hitApi() {
+        API.getArduinos()
+            .then(res => {
+                console.log(res.data.piDevice.arduinos)
+                let arduinos = res.data.piDevice.arduinos
+                // TODO: Start Switch here
+                switch (page) {
+                    case "dashboard":
+                        let tableData = []
+                        arduinos.forEach(arduino => {
+                            tableData.push([arduino.plantName, arduino.status, 'test'])
+                        })
+                        cb({ tableData: tableData })
+                        break;
+                }
+            })
+            .catch(err => console.log('UAL Error: ', err))
+    }
+
     const channel = pusher.subscribe("project-x");
     channel.bind("update", (data) => {
         if (data.id === UID) {
-            API.getArduinos()
-                .then(res => {
-                    console.log(res.data.piDevice.arduinos)
-                    let arduinos = res.data.piDevice.arduinos
-                    let tableData = []
-                    arduinos.forEach(arduino => {
-                        tableData.push([arduino.plantName, arduino.status, 'test'])
-                    })
-                    cb({ tableData: tableData })
-                })
-                .catch(err => console.log('UAL Error: ', err))
+            hitApi()
         }
     })
 
-    API.getArduinos()
-        .then(res => {
-            console.log(res.data.piDevice.arduinos)
-            let arduinos = res.data.piDevice.arduinos
-            let tableData = []
-            arduinos.forEach(arduino => {
-                tableData.push([arduino.plantName, arduino.status, 'test'])
-            })
-            cb({ tableData: tableData })
-        })
-        .catch(err => console.log('UAL Error: ', err))
+    hitApi()
+
 }
 
 export default UserSetup;

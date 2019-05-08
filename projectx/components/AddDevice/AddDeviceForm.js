@@ -20,6 +20,10 @@ class AddDeviceForm extends Component {
         schedule: []
     }
 
+    componentDidMount() {
+
+    }
+
     addSchedule = (newSchedule) => {
         let addedSchedule = this.state.schedule.map(a => a)
         addedSchedule.push(newSchedule)
@@ -28,7 +32,17 @@ class AddDeviceForm extends Component {
         })
     }
 
-
+    saveSchedule = () => {
+        let schedule = {
+            piDevice: {
+                arduinos: 
+            },
+        }
+        API.registerUser(schedule)
+            .then(res => console.log("Schedule added"))
+            .catch(err => console.log('SCHEDULE ADD ERROR: ', err))
+        console.log("request sent!")
+    }
 
     render() {
 
