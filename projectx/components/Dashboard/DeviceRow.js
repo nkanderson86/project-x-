@@ -4,7 +4,7 @@ import { Table, TableWrapper, Row, Cell } from 'react-native-table-component';
 import { NavigationActions, withNavigation } from "react-navigation";
 import { CheckBox } from 'react-native-elements';
 import LoginHeaderImage from "../Login/LoginHeaderImage";
-import API from '../../utils/API'
+// import API from '../../utils/API'
 import UserSetup from '../userAuthListener'
 
 // put  device id in state and hide it from user and then populate 
@@ -19,6 +19,7 @@ class DeviceRow extends Component {
                 ['Plant 2', 'Status', ''],
             ],
             UID: props.navigation.state.params.data.UID,
+            page: "dashboard"
             // deviceData: [
             //     ["1"],
             //     ["2"],
@@ -26,22 +27,16 @@ class DeviceRow extends Component {
     }
 
     componentDidMount() {
-        // inceptor to add userId to headers in order to make API calls as an authenticated user
+        // inceptor to add userId to headers in order to make API calls as an authenticated user.  UserSetup also has an API call to retrieve all the arduinos for the account that will then be displayed to user on a table. 
         const setState = this.setState.bind(this)
-        UserSetup(this.state.UID, setState)
-
-        // hit database and get user device information that has been input
-        // which will incliude name, populate status in index 1, device id hidden
-        // API.getArduinos()
-        //     .then(res => console.log(res.data))
-        //     .catch(err => console.log('LOGIN ERROR: ', err))
+        UserSetup(this.state.UID, setState, this.state.page)
     }
 
     goToEditDevice(index) {
         // console.log(index);
         const navigationAction = NavigationActions.navigate({
             routeName: "EditDevice",
-            params: { data: this.state.tableData[index][0] }
+            params: { data: this.state.tableData[index][0], UID: this.state.UID }
             //this.state.tableData[0]
         });
         this.props.navigation.dispatch(navigationAction);
