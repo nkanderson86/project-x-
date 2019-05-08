@@ -3,18 +3,22 @@ import { StyleSheet, View, Container } from 'react-native';
 import { Table, TableWrapper, Row, Cell } from 'react-native-table-component';
 import { NavigationActions, withNavigation } from "react-navigation";
 import { CheckBox } from 'react-native-elements';
-import LoginHeaderImage from "../Login/LoginHeaderImage"
+import LoginHeaderImage from "../Login/LoginHeaderImage";
+import API from '../../utils/API'
+import UserSetup from '../userAuthListener'
 
 // put  device id in state and hide it from user and then populate 
 class DeviceRow extends Component {
     constructor(props) {
         super(props);
+        console.log(props.navigation.state.params.data.UID);
         this.state = {
             tableHead: ['Name', 'Status', 'Edit'],
             tableData: [
                 ['Plant 1', 'Status', ''],
                 ['Plant 2', 'Status', ''],
             ],
+            UID: props.navigation.state.params.data.UID,
             // deviceData: [
             //     ["1"],
             //     ["2"],
@@ -22,9 +26,15 @@ class DeviceRow extends Component {
     }
 
     componentDidMount() {
+        // inceptor to add userId to headers in order to make API calls as an authenticated user
+        const setState = this.setState.bind(this)
+        UserSetup(this.state.UID, setState)
+
         // hit database and get user device information that has been input
         // which will incliude name, populate status in index 1, device id hidden
-        //
+        // API.getArduinos()
+        //     .then(res => console.log(res.data))
+        //     .catch(err => console.log('LOGIN ERROR: ', err))
     }
 
     goToEditDevice(index) {
