@@ -4,7 +4,7 @@ import { StyleSheet, Text } from 'react-native';
 import { Form, Item, Input, Label } from 'native-base';
 import { NavigationActions, withNavigation } from "react-navigation";
 import { Button } from 'react-native-elements';
-import LoginButton from "./LoginButton"
+// import LoginButton from "./LoginButton"
 import ForgotPasswordButton from "../Forgot/ForgotPasswordButton"
 import SignupButton from "../Signup/SignupButton"
 import API from '../../utils/API';
@@ -31,6 +31,14 @@ class LoginForm extends Component {
         // this.props.navigation.goBack();
     }
 
+    goToDashboard = () => {
+        const navigateAction = NavigationActions.navigate({
+            routeName: "Dashboard",
+            // params: { data: userObj }
+        });
+        this.props.navigation.dispatch(navigateAction);
+    }
+
     login = () => {
 
         const { username, password } = this.state
@@ -40,11 +48,9 @@ class LoginForm extends Component {
         console.log(userObj)
 
         API.login(userObj)
-            .then(res => console.log("Signed Up"))
+            .then(res => this.goToDashboard())
             .catch(err => console.log('LOGIN ERROR: ', err))
 
-        this.goToMain();
-        // .catch(err => console.log('LOGIN ERROR: ', err))
     }
 
     render() {
