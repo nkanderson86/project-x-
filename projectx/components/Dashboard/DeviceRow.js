@@ -12,8 +12,8 @@ class DeviceRow extends Component {
         this.state = {
             tableHead: ['Name', 'Status', 'Edit'],
             tableData: [
-                ['Plant 1', 'Good', ''],
-                ['Plant 2', 'Err', ''],
+                ['Plant 1', 'Status', ''],
+                ['Plant 2', 'Status', ''],
             ],
             // deviceData: [
             //     ["1"],
@@ -27,19 +27,21 @@ class DeviceRow extends Component {
         //
     }
 
-    goToEditDevice() {
+    goToEditDevice(index) {
+        // console.log(index);
         const navigationAction = NavigationActions.navigate({
             routeName: "EditDevice",
-            params: { data: this.state.tableData[0] }
+            params: { data: this.state.tableData[index][0] }
+            //this.state.tableData[0]
         });
         this.props.navigation.dispatch(navigationAction);
     }
 
     render() {
         const state = this.state;
-        const element = () => (
-            <CheckBox center iconType='material' uncheckedIcon='add' checked={this.state.checked} onPress={() => this.goToEditDevice(this.state.tableData[0])} />
-        );
+        // const element = (cellData, index) => (
+        //     <CheckBox center iconType='material' uncheckedIcon='add' checked={this.state.checked} onPress={() => this.goToEditDevice(index)} />
+        // );
 
         return (
 
@@ -52,7 +54,7 @@ class DeviceRow extends Component {
                             <TableWrapper key={index} style={styles.row}>
                                 {
                                     rowData.map((cellData, cellIndex) => (
-                                        <Cell key={cellIndex} data={cellIndex === 2 ? element(cellData, index) : cellData} textStyle={styles.text} />
+                                        <Cell key={cellIndex} data={cellIndex === 2 ? <CheckBox center iconType='material' uncheckedIcon='add' checked={this.state.checked} onPress={() => this.goToEditDevice(index)} /> : cellData} textStyle={styles.text} />
                                     ))
                                 }
                             </TableWrapper>

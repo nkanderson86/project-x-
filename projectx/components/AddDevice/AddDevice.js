@@ -1,6 +1,6 @@
 // required imports and dependencies
 import React, { Component } from 'react';
-import { StyleSheet, Button, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Container, Content, Form, Item, Input, Label } from 'native-base';
 import { withNavigation } from 'react-navigation';
 import AddScheduleModal from "../AddDevice/AddScheduleModal"
@@ -30,7 +30,7 @@ class AddDeviceForm extends Component {
                     </Item>
                     {/* button to route user, input logic to create account on component CreateAccountButton.js */}
                 </Form>
-                <View>
+                <View style={styles.addScheduleModal}>
                     <AddScheduleModal />
                 </View>
             </Container >
@@ -51,6 +51,10 @@ const styles = StyleSheet.create({
         marginRight: 20,
         marginLeft: 20,
         marginTop: 20
+    },
+
+    addScheduleModal: {
+        alignContent: "center"
     },
 
     scheduleModalButton: {
