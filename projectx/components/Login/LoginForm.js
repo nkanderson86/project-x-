@@ -31,10 +31,10 @@ class LoginForm extends Component {
         // this.props.navigation.goBack();
     }
 
-    goToDashboard = () => {
+    goToDashboard = (userObj) => {
         const navigateAction = NavigationActions.navigate({
             routeName: "Dashboard",
-            // params: { data: userObj }
+            params: { data: userObj }
         });
         this.props.navigation.dispatch(navigateAction);
     }
@@ -48,8 +48,13 @@ class LoginForm extends Component {
         console.log(userObj)
 
         API.login(userObj)
-            .then(res => this.goToDashboard())
-            .catch(err => console.log('LOGIN ERROR: ', err))
+            .then(res => {
+                this.goToDashboard(res.data)
+            })
+            .catch(err => {
+                console.log('LOGIN ERROR: ', err)
+                alert("Incorrect Username or Password!")
+            })
 
     }
 

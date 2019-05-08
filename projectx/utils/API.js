@@ -12,6 +12,9 @@ export default {
     },
     registerUser: (userObj) => {
         return axios.post(`${api_url}/api/register`, userObj)
+    },
+    getArduinos: () => {
+        return axios.get(`${api_url}/api/arduinos`)
     }
 
 }
