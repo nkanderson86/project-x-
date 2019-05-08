@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Modal, Text, TouchableHighlight, View, Alert, StyleSheet, Picker, Switch } from 'react-native';
 import { Button, CheckBox } from 'react-native-elements';
 
-class AddScheduleModal extends Component {
+class EditScheduleModal extends Component {
 
     state = {
         modalVisible: false,
@@ -27,7 +27,7 @@ class AddScheduleModal extends Component {
         // );
 
         return (
-            <View style={styles.addScheduleModal}>
+            <View style={styles.editScheduleModal}>
                 <Modal
                     animationType="fade"
                     presentationStyle="fullScreen"
@@ -40,6 +40,7 @@ class AddScheduleModal extends Component {
                         <View style={{ flexDirection: 'column' }}>
 
                         </View>
+
 
                         <View style={{ flexDirection: 'column' }}>
                             {/*Text to show the text according to switch condition*/}
@@ -72,10 +73,10 @@ class AddScheduleModal extends Component {
         );
     }
 }
-export default AddScheduleModal;
+export default EditScheduleModal;
 
 const styles = StyleSheet.create({
-    addScheduleModal: {
+    editScheduleModal: {
         alignItems: "center"
     },
 

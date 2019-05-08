@@ -28,7 +28,7 @@ class DeviceRow extends Component {
     }
 
     goToEditDevice(index) {
-        console.log(index);
+        // console.log(index);
         const navigationAction = NavigationActions.navigate({
             routeName: "EditDevice",
             params: { data: this.state.tableData[index][0] }
