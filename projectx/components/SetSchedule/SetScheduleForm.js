@@ -11,7 +11,7 @@ import ViewSchedule from "./ViewSchedule"
 // import Icon from 'react-native-vector-icons/FontAwesome';
 
 // create classful component
-class AddDeviceForm extends Component {
+class SetScheduleForm extends Component {
     // title for screen
     static navigationOptions = {
         title: 'Edit Device',
@@ -31,6 +31,15 @@ class AddDeviceForm extends Component {
         this.setState({
             schedule: addedSchedule
         })
+    }
+
+    handleDelete = (index) => {
+        console.log("INDEX:", index);
+        let schedule = this.state.schedule
+        schedule.splice(index, 1);
+        this.setState({
+            schedule: schedule
+        });
     }
 
     // saveSchedule = () => {
@@ -66,7 +75,7 @@ class AddDeviceForm extends Component {
                 </View>
 
                 <View>
-                    {this.state.schedule.map((a, i) => <ViewSchedule schedule={a} key={i} />)}
+                    {this.state.schedule.map((a, i) => <ViewSchedule handleDelete={this.handleDelete} schedule={a} key={i} data_id={i} />)}
                 </View>
 
                 <View>
@@ -79,7 +88,7 @@ class AddDeviceForm extends Component {
 }
 
 // export component withNavigation method which will pass props
-export default withNavigation(AddDeviceForm);
+export default withNavigation(SetScheduleForm);
 
 const styles = StyleSheet.create({
     addDeviceContainer: {

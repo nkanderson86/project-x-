@@ -19,10 +19,16 @@ class EditDeviceForm extends Component {
         UID: this.props.navigation.state.params.UID
     }
 
+    componentDidMount() {
+        // inceptor to add userId to headers in order to make API calls as an authenticated user.  UserSetup also has an API call to retrieve all the arduinos for the account that will then be displayed to user on a table. 
+        const setState = this.setState.bind(this)
+        UserSetup(this.state.UID, setState, this.state.page)
+    }
+
     componentDidUpdate = () => {
         const setState = this.setState.bind(this)
         UserSetup(this.state.UID, setState, this.state.page)
-        console.log(this.state)
+        // console.log(this.state)
     }
 
     goToSetSchedule = (userObj) => {
@@ -34,10 +40,10 @@ class EditDeviceForm extends Component {
     }
 
     render() {
-
         return (
             // container for components
             <Container>
+
                 <Form style={styles.editDeviceContainer}>
                     <Item style={styles.editDeviceField} stackedLabel last>
                         <Label>Device ID</Label>

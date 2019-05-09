@@ -9,9 +9,9 @@ class AddScheduleModal extends Component {
     state = {
         modalVisible: false,
         switchValue: false,
-        day: "Monday",
-        amount: "0.25",
-        time: "00:01"
+        day: "",
+        amount: "",
+        time: ""
     };
 
     setModalVisible(visible) {
@@ -55,6 +55,7 @@ class AddScheduleModal extends Component {
                                     onValueChange={(dayValue, itemIndex) =>
                                         this.setState({ day: dayValue })
                                     }>
+                                    <Picker.Item label="" value="" />
                                     <Picker.Item label="Monday" value="Monday" />
                                     <Picker.Item label="Tuesday" value="Tuesday" />
                                     <Picker.Item label="Wednesday" value="Wednesday" />
@@ -73,6 +74,7 @@ class AddScheduleModal extends Component {
                                     onValueChange={(waterAmountValue, itemIndex) =>
                                         this.setState({ amount: waterAmountValue })
                                     }>
+                                    <Picker.Item label="" value="" />
                                     <Picker.Item label="0.25 cups" value="0.25" />
                                     <Picker.Item label="0.5 cups" value="0.5" />
                                     <Picker.Item label="1 cup" value="1" />
@@ -93,6 +95,7 @@ class AddScheduleModal extends Component {
                                     onValueChange={(timeValue, itemIndex) =>
                                         this.setState({ time: timeValue })
                                     }>
+                                    <Picker.Item label="" value="" />
                                     <Picker.Item label="00:01" value="00:01" />
                                     <Picker.Item label="01:00" value="01:00" />
                                     <Picker.Item label="02:00" value="02:00" />
