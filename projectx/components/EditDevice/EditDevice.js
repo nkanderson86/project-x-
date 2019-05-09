@@ -1,6 +1,6 @@
 // required imports and dependencies
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import { Button } from "react-native-elements";
 import { Container, Content, Form, Item, Input, Label } from 'native-base';
 import { withNavigation, NavigationActions } from 'react-navigation';
@@ -27,13 +27,8 @@ class EditDeviceForm extends Component {
         const setState = this.setState.bind(this)
         UserSetup(this.state.UID, setState, this.state.page, this.state.deviceId)
         console.log("SCHEDULE", this.state.scheduleData)
+        console.log("DAY", this.state.scheduleData)
     }
-
-    // componentDidUpdate = () => {
-    //     const setState = this.setState.bind(this)
-    //     UserSetup(this.state.UID, setState, this.state.page)
-    //     // console.log(this.state)
-    // }
 
     goToSetSchedule = (userObj) => {
         const navigateAction = NavigationActions.navigate({
@@ -45,29 +40,42 @@ class EditDeviceForm extends Component {
 
     render() {
         return (
-            // container for components
-            <Container>
+            <ScrollView>
+                <Container>
 
-                <Form style={styles.editDeviceContainer}>
+                    <Form style={styles.editDeviceContainer}>
+                        <Item style={styles.editDeviceField} stackedLabel last>
+                            <Label>Device ID</Label>
+                            <Text>{this.state.deviceId}</Text>
+                        </Item>
+                        <Item style={styles.editDeviceField} stackedLabel last>
+                            <Label>Edit Device Name</Label>
+                            <Input onChangeText={(text) => this.setState({ name: text })} value={this.state.name} />
+                        </Item>
+                    </Form>
+                    <View style={styles.addScheduleModal}>
+                        <Button title="Edit/Set Schedule" onPress={this.goToSetSchedule} />
+                    </View>
+                    <View>
+                        {this.state.scheduleData.map(sch => {
+                            return (
+                                <View>
+                                    <Text>{`${sch.day}`}</Text>
+                                    <Text>{`${sch.amount} cups`}</Text>
+                                    <Text>{`${sch.time}`}</Text>
+                                </View>)
+                        }
+                        )}
+                    </View>
+
+                    {/* <Form style={styles.editDeviceContainer}>
                     <Item style={styles.editDeviceField} stackedLabel last>
-                        <Label>Device ID</Label>
-                        <Text>{this.state.deviceId}</Text>
-                    </Item>
-                    <Item style={styles.editDeviceField} stackedLabel last>
-                        <Label>Edit Device Name</Label>
-                        <Input onChangeText={(text) => this.setState({ name: text })} value={this.state.name} />
-                    </Item>
-                </Form>
-                <View style={styles.addScheduleModal}>
-                    <Button title="Edit/Set Schedule" onPress={this.goToSetSchedule} />
-                </View>
-                <Form style={styles.editDeviceContainer}>
-                    <Item style={styles.editDeviceField} floatingLabel last>
                         <Label>Show Schedule</Label>
-                        <Input />
+                        <Text>{this.state.scheduleData}</Text>
                     </Item>
-                </Form>
-            </Container>
+                </Form> */}
+                </Container>
+            </ScrollView>
 
         );
     }
