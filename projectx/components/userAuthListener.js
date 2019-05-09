@@ -47,7 +47,7 @@ function UserSetup(UID, cb, page, deviceId) {
                             if (arduino.deviceId === deviceId) {
                                 console.log("ARDUINO", arduino)
                                 if (arduino.schedule) {
-                                    scheduleData.push(arduino.schedule)
+                                    scheduleData = arduino.schedule
                                 }
                             }
                         })

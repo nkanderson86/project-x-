@@ -9,9 +9,9 @@ class AddScheduleModal extends Component {
     state = {
         modalVisible: false,
         switchValue: false,
-        day: "",
-        amount: "",
-        time: ""
+        day: "Monday",
+        amount: "0.25",
+        time: "0:01"
     };
 
     setModalVisible(visible) {
@@ -55,7 +55,6 @@ class AddScheduleModal extends Component {
                                     onValueChange={(dayValue, itemIndex) =>
                                         this.setState({ day: dayValue })
                                     }>
-                                    <Picker.Item label="" value="" />
                                     <Picker.Item label="Monday" value="Monday" />
                                     <Picker.Item label="Tuesday" value="Tuesday" />
                                     <Picker.Item label="Wednesday" value="Wednesday" />
@@ -74,9 +73,8 @@ class AddScheduleModal extends Component {
                                     onValueChange={(waterAmountValue, itemIndex) =>
                                         this.setState({ amount: waterAmountValue })
                                     }>
-                                    <Picker.Item label="" value="" />
-                                    <Picker.Item label="0.25 cups" value="0.25" />
-                                    <Picker.Item label="0.5 cups" value="0.5" />
+                                    <Picker.Item label="0.25 cup" value="0.25" />
+                                    <Picker.Item label="0.5 cup" value="0.5" />
                                     <Picker.Item label="1 cup" value="1" />
                                     <Picker.Item label="1.5 cups" value="1.5" />
                                     <Picker.Item label="2 cups" value="2" />
@@ -95,7 +93,6 @@ class AddScheduleModal extends Component {
                                     onValueChange={(timeValue, itemIndex) =>
                                         this.setState({ time: timeValue })
                                     }>
-                                    <Picker.Item label="" value="" />
                                     <Picker.Item label="00:01" value="00:01" />
                                     <Picker.Item label="01:00" value="01:00" />
                                     <Picker.Item label="02:00" value="02:00" />
@@ -127,6 +124,12 @@ class AddScheduleModal extends Component {
                         </View>
 
                         <Button title="Save" style={styles.saveModalButton} onPress={this.setSchedule} />
+                        {/* <Button title="Cancel" style={styles.saveModalButton} onPress={this.setModalVisible(!this.state.modalVisible)} /> */}
+                        <View>
+                            <Button title="Cancel" style={styles.saveModalButton} onPress={() => {
+                                this.setModalVisible(!this.state.modalVisible);
+                            }} />
+                        </View>
 
                     </View>
                 </Modal>
@@ -204,9 +207,9 @@ const styles = StyleSheet.create({
     },
 
 });
-//import css grid react native easy grid
-//import , container, nested pickers and button, first row - pickers
-// second row -- button
+        //import css grid react native easy grid
+        //import , container, nested pickers and button, first row - pickers
+        // second row -- button
 
 // //  {/* <Picker
 // selectedValue={this.state.language}
