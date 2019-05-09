@@ -11,16 +11,14 @@ import UserSetup from '../userAuthListener'
 class DeviceRow extends Component {
     constructor(props) {
         super(props);
-        console.log(props.navigation.state.params.data.UID);
+        console.log("Constructor Props", props.navigation.state.params.data.UID);
         this.state = {
             tableHead: ['Name', 'Device ID', 'Status', 'Edit'],
             tableData: [
             ],
             UID: props.navigation.state.params.data.UID,
             page: "dashboard"
-            // deviceData: [
-            //     ["1"],
-            //     ["2"],
+
         }
     }
 

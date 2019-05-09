@@ -4,7 +4,7 @@ import { StyleSheet, Button, Text } from 'react-native';
 import { Container, Content, Form, Item, Input, Label } from 'native-base';
 import { withNavigation } from 'react-navigation';
 import LoginHeaderImage from '../components/Login/LoginHeaderImage';
-import AddDeviceForm from "../components/SetSchedule/SetScheduleForm";
+import SetScheduleForm from "../components/SetSchedule/SetScheduleForm";
 // import Icon from 'react-native-vector-icons/FontAwesome';
 
 // create classful component
@@ -20,7 +20,7 @@ class SetScheduleScreen extends Component {
             // container for components
             <Container>
                 <LoginHeaderImage />
-                <AddDeviceForm />
+                <SetScheduleForm />
             </Container>
 
         );
