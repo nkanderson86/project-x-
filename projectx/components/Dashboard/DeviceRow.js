@@ -37,7 +37,7 @@ class DeviceRow extends Component {
         // console.log(index);
         const navigationAction = NavigationActions.navigate({
             routeName: "EditDevice",
-            params: { name: this.state.tableData[index][0], UID: this.state.UID, deviceId: this.state.tableData[index][1] }
+            params: { name: this.state.tableData[index][0], UID: this.state.UID, deviceId: this.state.tableData[index][1], data: this.props.navigation.state.params.data }
             //this.state.tableData[0]
         });
         this.props.navigation.dispatch(navigationAction);

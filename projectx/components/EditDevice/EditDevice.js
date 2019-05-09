@@ -16,20 +16,24 @@ class EditDeviceForm extends Component {
     state = {
         name: this.props.navigation.state.params.name,
         deviceId: this.props.navigation.state.params.deviceId,
-        UID: this.props.navigation.state.params.UID
+        UID: this.props.navigation.state.params.UID,
+        data: this.props.navigation.state.params.data,
+        page: "editDevice",
+        scheduleData: []
     }
 
     componentDidMount() {
         // inceptor to add userId to headers in order to make API calls as an authenticated user.  UserSetup also has an API call to retrieve all the arduinos for the account that will then be displayed to user on a table. 
         const setState = this.setState.bind(this)
-        UserSetup(this.state.UID, setState, this.state.page)
+        UserSetup(this.state.UID, setState, this.state.page, this.state.deviceId)
+        console.log("SCHEDULE", this.state.scheduleData)
     }
 
-    componentDidUpdate = () => {
-        const setState = this.setState.bind(this)
-        UserSetup(this.state.UID, setState, this.state.page)
-        // console.log(this.state)
-    }
+    // componentDidUpdate = () => {
+    //     const setState = this.setState.bind(this)
+    //     UserSetup(this.state.UID, setState, this.state.page)
+    //     // console.log(this.state)
+    // }
 
     goToSetSchedule = (userObj) => {
         const navigateAction = NavigationActions.navigate({
