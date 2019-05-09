@@ -41,13 +41,6 @@ function UserSetup(UID, cb, page, deviceId) {
                         })
                         cb({ tableData: tableData })
                         break;
-<<<<<<< HEAD
-                    // case "editDevice":
-                    // case "editSchedule": 
-                    // TODO: figure out how that works w/ modal instead of new page 
-
-
-=======
                     case "editDevice":
                         let scheduleData = []
                         arduinos.forEach(arduino => {
@@ -64,7 +57,6 @@ function UserSetup(UID, cb, page, deviceId) {
                     default:
                         console.log("DEFAULT HIT")
                         break;
->>>>>>> a51caef4a634ed7b3e070d20980839cc0941ab3d
                 }
             })
             .catch(err => console.log('UAL Error: ', err))
