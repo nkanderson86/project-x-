@@ -18,10 +18,6 @@ class LoginForm extends Component {
 
     }
 
-    componentDidUpdate = () => {
-        console.log(this.state)
-    }
-
     goToMain = (userObj) => {
         const navigateAction = NavigationActions.navigate({
             routeName: "Home",

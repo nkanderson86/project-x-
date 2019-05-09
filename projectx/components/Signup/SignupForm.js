@@ -28,10 +28,6 @@ class SignupForm extends Component {
         // console.log("working" + this.state.deviceId)
     }
 
-    componentDidUpdate = () => {
-        console.log(this.state)
-    }
-
     signUp = () => {
         const { username, password, deviceId } = this.state
 
