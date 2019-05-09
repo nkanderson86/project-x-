@@ -13,10 +13,8 @@ class DeviceRow extends Component {
         super(props);
         console.log(props.navigation.state.params.data.UID);
         this.state = {
-            tableHead: ['Name', 'Status', 'Edit'],
+            tableHead: ['Name', 'Device ID', 'Status', 'Edit'],
             tableData: [
-                ['Plant 1', 'Status', ''],
-                ['Plant 2', 'Status', ''],
             ],
             UID: props.navigation.state.params.data.UID,
             page: "dashboard"
@@ -36,7 +34,7 @@ class DeviceRow extends Component {
         // console.log(index);
         const navigationAction = NavigationActions.navigate({
             routeName: "EditDevice",
-            params: { data: this.state.tableData[index][0], UID: this.state.UID }
+            params: { name: this.state.tableData[index][0], UID: this.state.UID, deviceId: this.state.tableData[index][1] }
             //this.state.tableData[0]
         });
         this.props.navigation.dispatch(navigationAction);
@@ -59,7 +57,7 @@ class DeviceRow extends Component {
                             <TableWrapper key={index} style={styles.row}>
                                 {
                                     rowData.map((cellData, cellIndex) => (
-                                        <Cell key={cellIndex} data={cellIndex === 2 ? <CheckBox center iconType='material' uncheckedIcon='add' checked={this.state.checked} onPress={() => this.goToEditDevice(index)} /> : cellData} textStyle={styles.text} />
+                                        <Cell key={cellIndex} data={cellIndex === 3 ? <CheckBox center iconType='material' uncheckedIcon='add' checked={this.state.checked} onPress={() => this.goToEditDevice(index)} /> : cellData} textStyle={styles.text} />
                                     ))
                                 }
                             </TableWrapper>

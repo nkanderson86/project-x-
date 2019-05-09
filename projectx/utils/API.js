@@ -15,6 +15,8 @@ export default {
     },
     getArduinos: () => {
         return axios.get(`${api_url}/api/arduinos`)
-    }
+    },
+    // setSchedule: (scheduleObj) => {
+    //     return axios.post(`${api_url}/api/schedule`, scheduleObj)
 
 }

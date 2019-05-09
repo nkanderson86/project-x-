@@ -1,17 +1,17 @@
 // required imports and dependencies
 import React, { Component } from 'react';
-import { StyleSheet, Button } from 'react-native';
+import { StyleSheet, Button, Text } from 'react-native';
 import { Container, Content, Form, Item, Input, Label } from 'native-base';
 import { withNavigation } from 'react-navigation';
 import LoginHeaderImage from '../components/Login/LoginHeaderImage';
-import AddDeviceForm from "../components/AddDevice/AddDevice";
+import AddDeviceForm from "../components/SetSchedule/SetScheduleForm";
 // import Icon from 'react-native-vector-icons/FontAwesome';
 
 // create classful component
-class AddDeviceScreen extends Component {
+class SetScheduleScreen extends Component {
     // title for screen
     static navigationOptions = {
-        title: 'Add Device',
+        title: 'Edit / Set Schedule',
     };
 
     render() {
@@ -28,4 +28,4 @@ class AddDeviceScreen extends Component {
 }
 
 // export component withNavigation method which will pass props
-export default withNavigation(AddDeviceScreen);
+export default withNavigation(SetScheduleScreen);
