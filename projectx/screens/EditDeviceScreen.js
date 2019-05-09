@@ -6,6 +6,7 @@ import { withNavigation } from 'react-navigation';
 import LoginHeaderImage from '../components/Login/LoginHeaderImage';
 import EditDeviceForm from '../components/EditDevice/EditDevice';
 
+
 // import Icon from 'react-native-vector-icons/FontAwesome';
 
 // create classful component

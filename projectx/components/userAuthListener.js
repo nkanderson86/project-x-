@@ -28,7 +28,7 @@ function UserSetup(UID, cb, page) {
                     case "dashboard":
                         let tableData = []
                         arduinos.forEach(arduino => {
-                            tableData.push([arduino.plantName, arduino.status, 'test'])
+                            tableData.push([arduino.plantName, arduino.deviceId, arduino.status, 'test'])
                         })
                         cb({ tableData: tableData })
                         break;

@@ -4,12 +4,12 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 import TabBarIcon from '../components/TabBarIcon';
 import DashboardScreen from '../screens/DashboardScreen';
 import EditDeviceScreen from '../screens/EditDeviceScreen';
-import AddDeviceScreen from '../screens/AddDeviceScreen';
+import SetScheduleScreen from '../screens/SetScheduleScreen';
 
 const DashboardStack = createStackNavigator({
   Dashboard: DashboardScreen,
   EditDevice: EditDeviceScreen,
-  AddDevice: AddDeviceScreen,
+  SetSchedule: SetScheduleScreen,
 
 });
 
@@ -24,12 +24,12 @@ DashboardStack.navigationOptions = {
   ),
 };
 
-const AddDeviceStack = createStackNavigator({
-  AddDevice: AddDeviceScreen,
+const SetScheduleStack = createStackNavigator({
+  SetSchedule: SetScheduleScreen,
 })
 
-AddDeviceStack.navigationOptions = {
-  tabBarLabel: 'Add Device',
+SetScheduleStack.navigationOptions = {
+  tabBarLabel: 'Set Schedule',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -42,5 +42,5 @@ AddDeviceStack.navigationOptions = {
 // bottom tabs
 export default createBottomTabNavigator({
   DashboardStack,
-  AddDeviceStack,
+  SetScheduleStack,
 });

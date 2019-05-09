@@ -15,8 +15,6 @@ class DeviceRow extends Component {
         this.state = {
             tableHead: ['Name', 'Device ID', 'Status', 'Edit'],
             tableData: [
-                ['Plant 1', '', 'Status', ''],
-                ['Plant 2', '', 'Status', ''],
             ],
             UID: props.navigation.state.params.data.UID,
             page: "dashboard"
@@ -36,7 +34,7 @@ class DeviceRow extends Component {
         // console.log(index);
         const navigationAction = NavigationActions.navigate({
             routeName: "EditDevice",
-            params: { data: this.state.tableData[index][0], UID: this.state.UID }
+            params: { name: this.state.tableData[index][0], UID: this.state.UID, deviceId: this.state.tableData[index][1] }
             //this.state.tableData[0]
         });
         this.props.navigation.dispatch(navigationAction);

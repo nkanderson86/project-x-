@@ -4,8 +4,9 @@ import { StyleSheet, View, Text } from 'react-native';
 import { Button } from 'react-native-elements';
 import { Container, Form, Item, Input, Label } from 'native-base';
 import { withNavigation } from 'react-navigation';
-import AddScheduleModal from "./AddScheduleModal"
-import ViewSchedule from "../AddDevice/ViewSchedule"
+import AddScheduleModal from "./SetScheduleModal"
+import ViewSchedule from "./ViewSchedule"
+
 
 // import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -13,7 +14,7 @@ import ViewSchedule from "../AddDevice/ViewSchedule"
 class AddDeviceForm extends Component {
     // title for screen
     static navigationOptions = {
-        title: 'Add Device',
+        title: 'Edit Device',
     };
 
     state = {
@@ -32,17 +33,17 @@ class AddDeviceForm extends Component {
         })
     }
 
-    saveSchedule = () => {
-        let schedule = {
-            piDevice: {
-                arduinos: 
-            },
-        }
-        API.registerUser(schedule)
-            .then(res => console.log("Schedule added"))
-            .catch(err => console.log('SCHEDULE ADD ERROR: ', err))
-        console.log("request sent!")
-    }
+    // saveSchedule = () => {
+    //     let schedule = {
+    //         piDevice: {
+    //             arduinos: 
+    //         },
+    //     }
+    //     API.registerUser(schedule)
+    //         .then(res => console.log("Schedule added"))
+    //         .catch(err => console.log('SCHEDULE ADD ERROR: ', err))
+    //     console.log("request sent!")
+    // }
 
     render() {
 
