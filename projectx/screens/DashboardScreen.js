@@ -1,5 +1,6 @@
 // required imports and dependencies
 import React, { Component } from 'react';
+import { ScrollView } from "react-native"
 import { Container, Content } from 'native-base';
 import DeviceRow from "../components/Dashboard/DeviceRow"
 import { withNavigation } from 'react-navigation';
@@ -17,8 +18,10 @@ class DashboardScreen extends Component {
         return (
             // container for components
             <Container>
-                {/* devices acordian element, could inject statuses and add new device? */}
-                <DeviceRow />
+                <ScrollView>
+                    {/* devices acordian element, could inject statuses and add new device? */}
+                    <DeviceRow />
+                </ScrollView>
             </Container>
 
         );
