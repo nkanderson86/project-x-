@@ -3,7 +3,15 @@ import Pusher from "pusher-js/react-native"
 import API from './../utils/API'
 
 // add third param 'page' here to feed switch statement.
-function UserSetup(UID, cb, page) {
+/**
+ * 
+ * @description Method that authenticates and handles functions that require being authenticated
+ * @param {String} UID User Id used for authentication
+ * @param {Function} cb Callback function to use on resolve
+ * @param {String} page Page that method is being called on
+ * @param {Int} deviceId Arduino device ID being used
+ */
+function UserSetup(UID, cb, page, deviceId) {
     this.interceptor = Axios.interceptors.request.use(config => {
         if (UID) {
             config.headers = { user: UID }
@@ -21,7 +29,8 @@ function UserSetup(UID, cb, page) {
     function hitApi() {
         API.getArduinos()
             .then(res => {
-                console.log(res.data.piDevice.arduinos)
+                // console.log(res.data.piDevice.arduinos)
+                // console.log("PAGE", page)
                 let arduinos = res.data.piDevice.arduinos
                 // TODO: Start Switch here
                 switch (page) {
@@ -31,6 +40,22 @@ function UserSetup(UID, cb, page) {
                             tableData.push([arduino.plantName, arduino.deviceId, arduino.status, 'test'])
                         })
                         cb({ tableData: tableData })
+                        break;
+                    case "editDevice":
+                        let scheduleData = []
+                        arduinos.forEach(arduino => {
+                            if (arduino.deviceId === deviceId) {
+                                console.log("ARDUINO", arduino)
+                                if (arduino.schedule) {
+                                    scheduleData.push(arduino.schedule)
+                                }
+                            }
+                        })
+                        console.log("SCHEDULE DATA", scheduleData)
+                        cb({ scheduleData: scheduleData })
+                        break;
+                    default:
+                        console.log("DEFAULT HIT")
                         break;
                 }
             })
