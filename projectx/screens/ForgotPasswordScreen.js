@@ -1,5 +1,6 @@
 // required imports and dependencies
 import React, { Component } from 'react';
+import { ScrollView } from "react-native";
 import { Container, Content } from 'native-base';
 import ForgotPasswordForm from "../components/Forgot/ForgotPasswordForm"
 import LoginHeaderImage from "../components/Login/LoginHeaderImage"
@@ -18,12 +19,14 @@ class ForgotPasswordScreen extends Component {
         return (
             // container for components
             <Container>
-                {/* icon/logo */}
-                <LoginHeaderImage />
-                {/* forgot password form component */}
-                <Content>
-                    <ForgotPasswordForm />
-                </Content>
+                <ScrollView>
+                    {/* icon/logo */}
+                    <LoginHeaderImage />
+                    {/* forgot password form component */}
+                    <Content>
+                        <ForgotPasswordForm />
+                    </Content>
+                </ScrollView>
             </Container>
         );
     }

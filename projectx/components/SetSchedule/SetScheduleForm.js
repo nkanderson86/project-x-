@@ -1,9 +1,9 @@
 // required imports and dependencies
 import React, { Component } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Button } from 'react-native-elements';
 import { Container, Form, Item, Input, Label } from 'native-base';
-import { withNavigation } from 'react-navigation';
+import { withNavigation, NavigationActions } from 'react-navigation';
 import AddScheduleModal from "./SetScheduleModal"
 import ViewSchedule from "./ViewSchedule"
 
@@ -14,23 +14,32 @@ import ViewSchedule from "./ViewSchedule"
 class SetScheduleForm extends Component {
     // title for screen
     static navigationOptions = {
-        title: 'Edit Device',
+        title: 'Edit Device'
     };
 
     state = {
-        schedule: []
+        schedule: this.props.navigation.state.params.editSchedule.map(element => {
+            return { amount: element.amount, day: element.day, time: element.time }
+        }),
+        editSchedule: this.props.navigation.state.params.editSchedule
     }
 
     componentDidMount() {
-
+        console.log("SCHEDULE", this.state.schedule)
     }
 
-    addSchedule = (newSchedule) => {
+    addToSchedule = (newSchedule) => {
         let addedSchedule = this.state.schedule.map(a => a)
+        console.log("Added schedule", addedSchedule)
         addedSchedule.push(newSchedule)
+        console.log("Added after push", addedSchedule)
         this.setState({
             schedule: addedSchedule
         })
+    }
+
+    componentDidUpdate() {
+        console.log("COMBINED SCHEDULE", this.state.schedule)
     }
 
     handleDelete = (index) => {
@@ -40,19 +49,24 @@ class SetScheduleForm extends Component {
         this.setState({
             schedule: schedule
         });
+        console.log("After Delete", this.state.schedule)
     }
 
-    // saveSchedule = () => {
-    //     let schedule = {
-    //         piDevice: {
-    //             arduinos: 
-    //         },
-    //     }
-    //     API.registerUser(schedule)
-    //         .then(res => console.log("Schedule added"))
-    //         .catch(err => console.log('SCHEDULE ADD ERROR: ', err))
-    //     console.log("request sent!")
-    // }
+    saveSchedule = () => {
+        const newSchedule = this.state.schedule
+        console.log("AFTER ADDING NEW SHIT", newSchedule)
+        const navigateAction = NavigationActions.navigate({
+            routeName: "EditDevice",
+            params: { newSchedule: newSchedule }
+        });
+        // this.props.navigation.dispatch(navigateAction);
+        // this.props.parentSaveSchedule(newSchedule)
+        // const navigateAction = NavigationActions.navigate({
+        //     routeName: "EditDevice",
+        // });
+        // console.log("USEROBJ", this.state)
+        this.props.navigation.dispatch(navigateAction);
+    }
 
     render() {
 
@@ -71,7 +85,7 @@ class SetScheduleForm extends Component {
                     {/* button to route user, input logic to create account on component CreateAccountButton.js */}
                 </Form>
                 <View style={styles.addScheduleModal}>
-                    <AddScheduleModal addToSchedule={this.addSchedule} />
+                    <AddScheduleModal addToSchedule={this.addToSchedule} />
                 </View>
 
                 <View>

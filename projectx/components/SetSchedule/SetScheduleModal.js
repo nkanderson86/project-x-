@@ -63,8 +63,6 @@ class AddScheduleModal extends Component {
                                     <Picker.Item label="Saturday" value="Saturday" />
                                     <Picker.Item label="Sunday" value="Sunday" />
                                 </Picker>
-                                {console.log("day:", this.state.day)
-                                }
 
                             </View>
                             <View style={styles.modalPickerWaterAmount}>
@@ -83,8 +81,6 @@ class AddScheduleModal extends Component {
                                     <Picker.Item label="3.5 cups" value="3.5" />
                                     <Picker.Item label="4 cups" value="4" />
                                 </Picker>
-                                {console.log("water amount:", this.state.amount)
-                                }
                             </View>
 
                             <View style={styles.modalPickerTime}>
@@ -118,8 +114,6 @@ class AddScheduleModal extends Component {
                                     <Picker.Item label="22:00" value="22:00" />
                                     <Picker.Item label="23:00" value="23:00" />
                                 </Picker>
-                                {console.log("time:", this.state.time)
-                                }
                             </View>
                         </View>
 

@@ -1,6 +1,6 @@
 // required imports and dependencies
 import React, { Component } from 'react';
-import { StyleSheet, Button } from 'react-native';
+import { StyleSheet, Button, ScrollView } from 'react-native';
 import { Container, Content, Form, Item, Input, Label } from 'native-base';
 import { withNavigation } from 'react-navigation';
 import LoginHeaderImage from '../components/Login/LoginHeaderImage';
@@ -31,8 +31,10 @@ class EditDeviceScreen extends Component {
         return (
             // container for components
             <Container>
-                <LoginHeaderImage />
-                <EditDeviceForm />
+                <ScrollView>
+                    <LoginHeaderImage />
+                    <EditDeviceForm />
+                </ScrollView>
             </Container>
 
         );

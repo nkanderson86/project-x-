@@ -1,7 +1,7 @@
 // required imports and dependencies
 import React, { Component } from 'react';
-import { StyleSheet, Button, Text } from 'react-native';
-import { Container, Content, Form, Item, Input, Label } from 'native-base';
+import { Container } from 'native-base';
+import { ScrollView } from "react-native";
 import { withNavigation } from 'react-navigation';
 import LoginHeaderImage from '../components/Login/LoginHeaderImage';
 import SetScheduleForm from "../components/SetSchedule/SetScheduleForm";
@@ -19,8 +19,11 @@ class SetScheduleScreen extends Component {
         return (
             // container for components
             <Container>
-                <LoginHeaderImage />
-                <SetScheduleForm />
+                <ScrollView>
+                    <LoginHeaderImage />
+                    <SetScheduleForm />
+                </ScrollView>
+
             </Container>
 
         );

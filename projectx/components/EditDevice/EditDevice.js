@@ -26,15 +26,28 @@ class EditDeviceForm extends Component {
         // inceptor to add userId to headers in order to make API calls as an authenticated user.  UserSetup also has an API call to retrieve all the arduinos for the account that will then be displayed to user on a table. 
         const setState = this.setState.bind(this)
         UserSetup(this.state.UID, setState, this.state.page, this.state.deviceId)
-        console.log("SCHEDULE", this.state.scheduleData)
-        console.log("DAY", this.state.scheduleData)
+        // console.log("SCHEDULE", this.state.scheduleData)
+        this.handleNewSchedule()
+    }
+
+    handleNewSchedule() {
+        console.log("DID IT WORK", this.props.navigation.state.params)
+        // let schedule = this.props.navigation.state.params.newSchedule ? this.props.navigation.state.params.newSchedule : this.props.navigation.state.params.scheduleData
+        // this.setState({ scheduleData: schedule })
+    }
+
+    componentDidUpdate() {
+        console.log(this.state.scheduleData)
     }
 
     goToSetSchedule = (userObj) => {
+        const editSchedule = this.state.scheduleData
         const navigateAction = NavigationActions.navigate({
             routeName: "SetSchedule",
-            params: { data: userObj }
+            params: { data: userObj, editSchedule: editSchedule }
         });
+        console.log("USEROBJ", this.state)
+
         this.props.navigation.dispatch(navigateAction);
     }
 
@@ -57,23 +70,17 @@ class EditDeviceForm extends Component {
                         <Button title="Edit/Set Schedule" onPress={this.goToSetSchedule} />
                     </View>
                     <View>
-                        {this.state.scheduleData.map(sch => {
-                            return (
-                                <View>
-                                    <Text>{`${sch.day}`}</Text>
-                                    <Text>{`${sch.amount} cups`}</Text>
-                                    <Text>{`${sch.time}`}</Text>
-                                </View>)
-                        }
-                        )}
+                        {
+                            this.state.scheduleData.map(sch => {
+                                return (
+                                    <View>
+                                        <Text>{`${sch.day}`}</Text>
+                                        <Text>{`${sch.amount} cups`}</Text>
+                                        <Text>{`${sch.time}`}</Text>
+                                    </View>)
+                            }
+                            )}
                     </View>
-
-                    {/* <Form style={styles.editDeviceContainer}>
-                    <Item style={styles.editDeviceField} stackedLabel last>
-                        <Label>Show Schedule</Label>
-                        <Text>{this.state.scheduleData}</Text>
-                    </Item>
-                </Form> */}
                 </Container>
             </ScrollView>
 
