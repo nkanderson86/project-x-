@@ -18,14 +18,19 @@ class DeviceRow extends Component {
             ],
             UID: props.navigation.state.params.data.UID,
             page: "dashboard"
-
         }
     }
 
     componentDidMount() {
         // inceptor to add userId to headers in order to make API calls as an authenticated user.  UserSetup also has an API call to retrieve all the arduinos for the account that will then be displayed to user on a table. 
         const setState = this.setState.bind(this)
-        UserSetup(this.state.UID, setState, this.state.page)
+        let pusher = UserSetup(this.state.UID, setState, this.state.page)
+        this.setState({ pusher: pusher })
+    }
+
+    componentWillUnmount() {
+        this.state.pusher.disconnect()
+        // console.log('disconnect')
     }
 
     goToEditDevice(index) {

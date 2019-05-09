@@ -32,6 +32,11 @@ function UserSetup(UID, cb, page) {
                         })
                         cb({ tableData: tableData })
                         break;
+                    // case "editDevice":
+                    // case "editSchedule": 
+                    // TODO: figure out how that works w/ modal instead of new page 
+
+
                 }
             })
             .catch(err => console.log('UAL Error: ', err))
@@ -45,6 +50,8 @@ function UserSetup(UID, cb, page) {
     })
 
     hitApi()
+
+    return pusher
 
 }
 
