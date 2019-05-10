@@ -1,6 +1,6 @@
 // required imports and dependencies
 import React, { Component } from "react";
-import { Image } from 'react-native-elements';
+import { Image, Icon } from 'react-native-elements';
 import { StyleSheet, View } from 'react-native'
 
 // create classful component
