@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Modal, Text, View, Alert, StyleSheet, Picker } from 'react-native';
 import { Button } from 'react-native-elements';
 import LoginHeaderImage from '../Login/LoginHeaderImage';
+import { Col, Row, Grid } from "react-native-easy-grid";
 import API from '../../utils/API';
 
 class AddScheduleModal extends Component {
@@ -29,7 +30,6 @@ class AddScheduleModal extends Component {
         // console.log("request sent!");
 
         this.setModalVisible(!this.state.modalVisible);
-
     }
 
     render() {
@@ -48,6 +48,7 @@ class AddScheduleModal extends Component {
                         <View style={styles.modalImage} >
                             <LoginHeaderImage />
                         </View>
+
                         <View style={styles.inputFlex}>
                             <View style={styles.modalPickerDay}>
                                 <Picker
@@ -149,12 +150,6 @@ const styles = StyleSheet.create({
         marginLeft: 20
     },
 
-    // modalText: {
-    //     fontSize: 20,
-    //     height: 50,
-    //     width: 75,
-    // },
-
     inputFlex: {
         flex: 1,
         flexDirection: 'row',
@@ -163,15 +158,6 @@ const styles = StyleSheet.create({
         marginLeft: 20,
         marginRight: 20,
     },
-
-    // inputFlex: {
-    //     flex: 1,
-    //     flexDirection: 'row',
-    //     justifyContent: 'center',
-    //     alignItems: "center",
-    //     marginLeft: 20,
-    //     marginRight: 20,
-    // },
 
     modalPickerDay: {
         height: 50,
@@ -204,13 +190,3 @@ const styles = StyleSheet.create({
         //import css grid react native easy grid
         //import , container, nested pickers and button, first row - pickers
         // second row -- button
-
-// //  {/* <Picker
-// selectedValue={this.state.language}
-// style={{ height: 50, width: 100, marginTop: 30 }}
-// onValueChange={(itemValue, itemIndex) =>
-//     this.setState({ language: itemValue })
-// }>
-// <Picker.Item label="Java" value="java" />
-// <Picker.Item label="JavaScript" value="js" />
-// </Picker> */}
