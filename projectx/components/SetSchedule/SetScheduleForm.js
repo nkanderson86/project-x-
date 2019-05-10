@@ -18,14 +18,19 @@ class SetScheduleForm extends Component {
     };
 
     state = {
+
         schedule: this.props.navigation.state.params.editSchedule.map(element => {
             return { amount: element.amount, day: element.day, time: element.time }
         }),
-        editSchedule: this.props.navigation.state.params.editSchedule
+        editSchedule: this.props.navigation.state.params.editSchedule,
+        name: this.props.navigation.state.params.name,
+        deviceId: this.props.navigation.state.params.deviceId,
     }
 
     componentDidMount() {
         console.log("SCHEDULE", this.state.schedule)
+        console.log("Name", this.state.name)
+        console.log("DeviceID", this.state.deviceId)
     }
 
     addToSchedule = (newSchedule) => {
@@ -74,13 +79,13 @@ class SetScheduleForm extends Component {
             // container for components
             <Container>
                 <Form style={styles.addDeviceContainer}>
-                    <Item style={styles.addDeviceField} floatingLabel last>
+                    <Item style={styles.addDeviceField} stackedLabel last>
                         <Label>Device ID</Label>
-                        <Input />
+                        <Input value={this.state.deviceId} />
                     </Item>
-                    <Item style={styles.addDeviceField} floatingLabel last>
+                    <Item style={styles.addDeviceField} stackedLabel last>
                         <Label>Device Name</Label>
-                        <Input />
+                        <Input value={this.state.name} />
                     </Item>
                     {/* button to route user, input logic to create account on component CreateAccountButton.js */}
                 </Form>
