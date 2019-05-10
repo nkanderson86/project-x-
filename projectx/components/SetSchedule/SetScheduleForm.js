@@ -52,11 +52,15 @@ class SetScheduleForm extends Component {
     }
 
     saveSchedule = () => {
+        console.log(this.state.deviceId)
         const { deviceId, plantName, schedule } = this.state
-        let ardObj = { deviceId, plantName, schedule }
+        const ardObj = { deviceId: deviceId.deviceId, plantName: plantName.name, schedule: schedule }
         console.log("ardObj", ardObj)
         API.updateArduino(ardObj)
-            .then(res => console.log(res))
+            .then(res => {
+                console.log(res)
+                console.log("API Sent")
+            })
             .catch(err => console.log('LOGIN ERROR: ', err))
 
         const navigateAction = NavigationActions.navigate({
@@ -73,11 +77,11 @@ class SetScheduleForm extends Component {
                 <Form style={styles.addDeviceContainer}>
                     <Item style={styles.addDeviceField} stackedLabel last>
                         <Label>Device ID</Label>
-                        <Input value={this.state.deviceId} />
+                        <Input value={this.state.deviceId.deviceId} />
                     </Item>
                     <Item style={styles.addDeviceField} stackedLabel last>
                         <Label>Device Name</Label>
-                        <Input value={this.state.name} />
+                        <Input value={this.state.plantName.name} />
                     </Item>
                     {/* button to route user, input logic to create account on component CreateAccountButton.js */}
                 </Form>

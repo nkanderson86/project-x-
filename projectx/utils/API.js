@@ -19,6 +19,4 @@ export default {
     updateArduino: (ardObj) => {
         return axios.post(`${api_url}/api/updateArduino`, ardObj)
     }
-
-
 }
