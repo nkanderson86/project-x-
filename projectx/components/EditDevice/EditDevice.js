@@ -2,13 +2,9 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import { Button } from "react-native-elements";
-import { Container, Content, Form, Item, Input, Label } from 'native-base';
+import { Container, Form, Item, Input, Label } from 'native-base';
 import { withNavigation, NavigationActions } from 'react-navigation';
 import UserSetup from '../userAuthListener';
-import LoginHeaderImage from "../Login/LoginHeaderImage";
-import SetScheduleModal from "../SetSchedule/SetScheduleModal"
-import ViewSchedule from "../SetSchedule/ViewSchedule"
-// import Icon from 'react-native-vector-icons/FontAwesome';
 
 // create classful component
 class EditDeviceForm extends Component {
@@ -51,10 +47,13 @@ class EditDeviceForm extends Component {
     // }
 
     goToSetSchedule = (userObj) => {
-        const editSchedule = this.state.scheduleData
+        const { scheduleData, name, deviceId } = this.state
+        const editSchedule = { scheduleData }
+        const editName = { name }
+        const editDeviceId = { deviceId }
         const navigateAction = NavigationActions.navigate({
             routeName: "SetSchedule",
-            params: { data: userObj, editSchedule: editSchedule }
+            params: { data: userObj, editSchedule: editSchedule.scheduleData, name: editName, deviceId: editDeviceId }
         });
         // console.log("USEROBJ", this.state)
 
@@ -65,19 +64,18 @@ class EditDeviceForm extends Component {
         return (
             <ScrollView>
                 <Container>
-
                     <Form style={styles.editDeviceContainer}>
                         <Item style={styles.editDeviceField} stackedLabel last>
                             <Label>Device ID</Label>
-                            <Text>{this.state.deviceId}</Text>
+                            <Input value={`${this.state.deviceId}`} />
                         </Item>
                         <Item style={styles.editDeviceField} stackedLabel last>
                             <Label>Edit Device Name</Label>
                             <Input onChangeText={(text) => this.setState({ name: text })} value={this.state.name} />
                         </Item>
                     </Form>
-                    <View style={styles.addScheduleModal}>
-                        <Button title="Edit/Set Schedule" onPress={this.goToSetSchedule} />
+                    <View>
+                        <Button title="Edit/Set Schedule" style={styles.setScheduleButton} onPress={this.goToSetSchedule} />
                     </View>
                     <View>
                         {
@@ -113,15 +111,10 @@ const styles = StyleSheet.create({
         marginTop: 20
     },
 
-    editScheduleButton: {
+    setScheduleButton: {
         marginTop: 40,
         marginRight: 20,
         marginLeft: 20
     },
 
-    editDeviceSaveButton: {
-        marginTop: 40,
-        marginRight: 20,
-        marginLeft: 20
-    },
 });
