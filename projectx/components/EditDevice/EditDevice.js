@@ -23,7 +23,7 @@ class EditDeviceForm extends Component {
             const setState = this.setState.bind(this)
             await UserSetup(this.state.UID, setState, this.state.page, this.state.deviceId)
             // console.log("SCHEDULE", this.state.scheduleData)
-            this.handleNewSchedule()
+            // this.handleNewSchedule()
         })
         // inceptor to add userId to headers in order to make API calls as an authenticated user.  UserSetup also has an API call to retrieve all the arduinos for the account that will then be displayed to user on a table. 
 
@@ -35,25 +35,25 @@ class EditDeviceForm extends Component {
     //     // if(prevProps.data !== this.props.navigation.state.params.newSchedule)
     // }
 
-    handleNewSchedule() {
-        // console.log( this.props.navigation.state.params)
-        let schedule = this.props.navigation.state.params.newSchedule ? this.props.navigation.state.params.newSchedule : this.props.navigation.state.params.scheduleData
-        console.log('new param', schedule)
-        this.setState({ scheduleData: schedule })
-    }
+    // handleNewSchedule() {
+    //     // console.log( this.props.navigation.state.params)
+    //     let schedule = this.props.navigation.state.params.newSchedule ? this.props.navigation.state.params.newSchedule : this.props.navigation.state.params.scheduleData
+    //     console.log('new param', schedule)
+    //     this.setState({ scheduleData: schedule })
+    // }
 
     // componentDidUpdate() {
     //     console.log(this.state.scheduleData)
     // }
 
     goToSetSchedule = (userObj) => {
-        const { scheduleData, name, deviceId } = this.state
+        const { scheduleData, name, deviceId, UID } = this.state
         const editSchedule = { scheduleData }
         const editName = { name }
         const editDeviceId = { deviceId }
         const navigateAction = NavigationActions.navigate({
             routeName: "SetSchedule",
-            params: { data: userObj, editSchedule: editSchedule.scheduleData, name: editName, deviceId: editDeviceId }
+            params: { data: userObj, editSchedule: editSchedule.scheduleData, name: editName, deviceId: editDeviceId, UID: UID }
         });
         // console.log("USEROBJ", this.state)
 

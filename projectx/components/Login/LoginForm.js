@@ -36,12 +36,8 @@ class LoginForm extends Component {
     }
 
     login = () => {
-
         const { username, password } = this.state
-
         const userObj = { username, password }
-
-        console.log(userObj)
 
         API.login(userObj)
             .then(res => {

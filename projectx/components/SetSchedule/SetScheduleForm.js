@@ -6,6 +6,8 @@ import { Container, Form, Item, Input, Label } from 'native-base';
 import { withNavigation, NavigationActions } from 'react-navigation';
 import AddScheduleModal from "./SetScheduleModal"
 import ViewSchedule from "./ViewSchedule"
+import UserSetup from '../userAuthListener';
+import API from '../../utils/API';
 
 
 // import Icon from 'react-native-vector-icons/FontAwesome';
@@ -18,58 +20,48 @@ class SetScheduleForm extends Component {
     };
 
     state = {
-
         schedule: this.props.navigation.state.params.editSchedule.map(element => {
             return { amount: element.amount, day: element.day, time: element.time }
         }),
         editSchedule: this.props.navigation.state.params.editSchedule,
-        name: this.props.navigation.state.params.name,
+        plantName: this.props.navigation.state.params.name,
         deviceId: this.props.navigation.state.params.deviceId,
+        UID: this.props.navigation.state.params.UID,
+        page: "setSchedule"
     }
 
     componentDidMount() {
-        console.log("SCHEDULE", this.state.schedule)
-        console.log("Name", this.state.name)
-        console.log("DeviceID", this.state.deviceId)
+        const setState = this.setState.bind(this)
+        UserSetup(this.state.UID, setState, this.state.page, this.state.deviceId)
     }
 
     addToSchedule = (newSchedule) => {
         let addedSchedule = this.state.schedule.map(a => a)
-        console.log("Added schedule", addedSchedule)
         addedSchedule.push(newSchedule)
-        console.log("Added after push", addedSchedule)
         this.setState({
             schedule: addedSchedule
         })
     }
 
-    componentDidUpdate() {
-        console.log("COMBINED SCHEDULE", this.state.schedule)
-    }
-
     handleDelete = (index) => {
-        console.log("INDEX:", index);
         let schedule = this.state.schedule
         schedule.splice(index, 1);
         this.setState({
             schedule: schedule
         });
-        console.log("After Delete", this.state.schedule)
     }
 
     saveSchedule = () => {
-        const newSchedule = this.state.schedule
-        console.log("AFTER ADDING NEW SHIT", newSchedule)
+        const { deviceId, plantName, schedule } = this.state
+        let ardObj = { deviceId, plantName, schedule }
+        console.log("ardObj", ardObj)
+        API.updateArduino(ardObj)
+            .then(res => console.log(res))
+            .catch(err => console.log('LOGIN ERROR: ', err))
+
         const navigateAction = NavigationActions.navigate({
             routeName: "EditDevice",
-            params: { newSchedule: newSchedule }
         });
-        // this.props.navigation.dispatch(navigateAction);
-        // this.props.parentSaveSchedule(newSchedule)
-        // const navigateAction = NavigationActions.navigate({
-        //     routeName: "EditDevice",
-        // });
-        // console.log("USEROBJ", this.state)
         this.props.navigation.dispatch(navigateAction);
     }
 

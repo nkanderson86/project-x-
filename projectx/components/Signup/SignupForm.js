@@ -19,7 +19,6 @@ class SignupForm extends Component {
 
     generateDeviceId = () => {
         let id = Math.floor(Math.random() * (10000) + 1000)
-        console.log("ID " + id)
         this.setState({ deviceId: id })
     }
 
@@ -35,7 +34,7 @@ class SignupForm extends Component {
         API.registerUser(newUser)
             .then(res => console.log("Signed Up"))
             .catch(err => console.log('LOGIN ERROR: ', err))
-        console.log("request sent!")
+
 
         const navigateAction = NavigationActions.navigate({
             routeName: "Home",

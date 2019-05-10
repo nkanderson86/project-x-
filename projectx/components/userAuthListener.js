@@ -29,8 +29,6 @@ function UserSetup(UID, cb, page, deviceId) {
     function hitApi() {
         return API.getArduinos()
             .then(res => {
-                // console.log(res.data.piDevice.arduinos)
-                // console.log("PAGE", page)
                 let arduinos = res.data.piDevice.arduinos
                 // TODO: Start Switch here
                 switch (page) {
@@ -45,7 +43,6 @@ function UserSetup(UID, cb, page, deviceId) {
                         let scheduleData = []
                         arduinos.forEach(arduino => {
                             if (arduino.deviceId === deviceId) {
-                                // console.log("ARDUINO", arduino)
                                 if (arduino.schedule) {
                                     scheduleData = arduino.schedule
                                 }
@@ -55,7 +52,6 @@ function UserSetup(UID, cb, page, deviceId) {
                         cb({ scheduleData: scheduleData })
                         break;
                     default:
-                        console.log("DEFAULT HIT")
                         break;
                 }
             })
