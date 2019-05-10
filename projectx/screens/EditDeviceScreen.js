@@ -13,7 +13,7 @@ import EditDeviceForm from '../components/EditDevice/EditDevice';
 class EditDeviceScreen extends Component {
     // title for screen
     static navigationOptions = {
-        title: 'Edit Device',
+        title: 'Device Details',
     };
 
     // constructor(props) {

@@ -1,6 +1,7 @@
 // required imports and dependencies
 import React, { Component } from 'react';
 import { Container, Content } from 'native-base';
+import { ScrollView } from "react-native"
 import SignupForm from "../components/Signup/SignupForm"
 import LoginHeaderImage from "../components/Login/LoginHeaderImage"
 import { withNavigation } from 'react-navigation';
@@ -18,12 +19,14 @@ class SignupScreen extends Component {
         return (
             // container for components
             <Container>
-                {/* icon/logo */}
-                <LoginHeaderImage />
-                {/* signup form component */}
-                <Content>
-                    <SignupForm />
-                </Content>
+                <ScrollView>
+                    {/* icon/logo */}
+                    <LoginHeaderImage />
+                    {/* signup form component */}
+                    <Content>
+                        <SignupForm />
+                    </Content>
+                </ScrollView>
             </Container>
 
         );

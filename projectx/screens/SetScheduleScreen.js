@@ -11,7 +11,7 @@ import SetScheduleForm from "../components/SetSchedule/SetScheduleForm";
 class SetScheduleScreen extends Component {
     // title for screen
     static navigationOptions = {
-        title: 'Edit / Set Schedule',
+        title: 'Edit Device',
     };
 
     render() {

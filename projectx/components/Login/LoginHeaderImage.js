@@ -9,7 +9,7 @@ export default class LoginHeaderImage extends Component {
         return (
             // image
             <View style={styles.container}>
-                <Image source={require("../../assets/images/icon.png")} />
+                <Image source={require("../../assets/images/plant.png")} />
             </View>
         );
     }
@@ -20,6 +20,8 @@ const styles = StyleSheet.create({
     container: {
         justifyContent: "center",
         alignItems: "center",
-        marginTop: 30
+        marginTop: 30,
+        flex: 1,
+        resizeMode: 'contain'
     }
 });
