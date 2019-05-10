@@ -30,6 +30,7 @@ class SignupForm extends Component {
     signUp = () => {
         const { username, password, deviceId } = this.state
         const newUser = { username, password, deviceId }
+        console.log(newUser)
 
         API.registerUser(newUser)
             .then(res => console.log("Signed Up"))
