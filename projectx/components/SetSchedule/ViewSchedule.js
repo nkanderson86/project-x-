@@ -20,6 +20,7 @@ export default ViewSchedule;
 const styles = StyleSheet.create({
     scheduleText: {
         textAlign: "center",
-        fontSize: 24
+        fontSize: 20,
+        marginTop: 20
     }
 })

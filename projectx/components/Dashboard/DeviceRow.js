@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Container } from 'react-native';
+import { StyleSheet, View, Container, Text } from 'react-native';
 import { Table, TableWrapper, Row, Cell } from 'react-native-table-component';
 import { NavigationActions, withNavigation } from "react-navigation";
 import { CheckBox } from 'react-native-elements';
@@ -25,7 +25,26 @@ class DeviceRow extends Component {
         const setState = this.setState.bind(this)
         let pusher = UserSetup(this.state.UID, setState, this.state.page)
         this.setState({ pusher: pusher })
+        // this.statusColors(this.state.tableData[2]);
     }
+
+    statusColors = (status) => {
+        switch (status) {
+            case 0:
+                style = { backgroundColor: "green" }
+                break;
+            case 1:
+                style = { backgroundColor: "red" }
+                break;
+
+            case 2:
+                style = { backgroundColor: "yellow" }
+                break;
+            default:
+                break;
+        }
+    }
+
 
     componentWillUnmount() {
         this.state.pusher.disconnect()
@@ -37,16 +56,12 @@ class DeviceRow extends Component {
         const navigationAction = NavigationActions.navigate({
             routeName: "EditDevice",
             params: { name: this.state.tableData[index][0], UID: this.state.UID, deviceId: this.state.tableData[index][1], data: this.props.navigation.state.params.data }
-            //this.state.tableData[0]
         });
         this.props.navigation.dispatch(navigationAction);
     }
 
     render() {
         const state = this.state;
-        // const element = (cellData, index) => (
-        //     <CheckBox center iconType='material' uncheckedIcon='add' checked={this.state.checked} onPress={() => this.goToEditDevice(index)} />
-        // );
 
         return (
 
@@ -58,16 +73,20 @@ class DeviceRow extends Component {
                         state.tableData.map((rowData, index) => (
                             <TableWrapper key={index} style={styles.row}>
                                 {
-                                    rowData.map((cellData, cellIndex) => (
-                                        <Cell key={cellIndex} data={cellIndex === 3 ? <CheckBox center iconType='material' uncheckedIcon='add' checked={this.state.checked} onPress={() => this.goToEditDevice(index)} /> : cellData} textStyle={styles.text} />
-                                    ))
+                                    rowData.map((cellData, cellIndex) => {
+                                        console.log("CELL DATA", cellData)
+                                        return (
+                                            <Cell key={cellIndex} data={cellIndex === 3 ? <CheckBox center iconType='material' uncheckedIcon='add' checked={this.state.checked} onPress={() => this.goToEditDevice(index)} /> : cellData === 2 ? <Text style={{ color: "green" }} >{cellData} </Text> : cellData} textStyle={styles.text} />
+                                        )
+                                    }
+                                    )
                                 }
                             </TableWrapper>
                         ))
                     }
                 </Table>
             </View >
-            // </Container>
+
         )
     }
 }
@@ -79,5 +98,17 @@ const styles = StyleSheet.create({
     head: { height: 40, backgroundColor: '#FFFFFF' },
     text: { margin: 6 },
     row: { flexDirection: 'row', backgroundColor: '#E8E8E8' },
+
+    statusGood: {
+        backgroundColor: "green"
+    },
+
+    statusError: {
+
+    },
+
+    statusNew: {
+
+    }
 
 });

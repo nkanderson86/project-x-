@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import { Modal, Text, View, Alert, StyleSheet, Picker } from 'react-native';
+import { Modal, View, Alert, StyleSheet, Picker } from 'react-native';
 import { Button } from 'react-native-elements';
 import LoginHeaderImage from '../Login/LoginHeaderImage';
-import { Col, Row, Grid } from "react-native-easy-grid";
-import API from '../../utils/API';
 
 class AddScheduleModal extends Component {
 
@@ -24,10 +22,6 @@ class AddScheduleModal extends Component {
         const newSchedule = { day, amount, time }
         console.log("NEW SCHEDULE: ", newSchedule)
         this.props.addToSchedule(newSchedule);
-        // API.setSchedule(newSchedule)
-        //     .then(res => console.log("Schedule added"))
-        //     .catch(err => console.log('SCHEDULE ERROR: ', err))
-        // console.log("request sent!");
 
         this.setModalVisible(!this.state.modalVisible);
     }
@@ -119,7 +113,7 @@ class AddScheduleModal extends Component {
                         </View>
 
                         <Button title="Save" style={styles.saveModalButton} onPress={this.setSchedule} />
-                        {/* <Button title="Cancel" style={styles.saveModalButton} onPress={this.setModalVisible(!this.state.modalVisible)} /> */}
+
                         <View>
                             <Button title="Cancel" style={styles.saveModalButton} onPress={() => {
                                 this.setModalVisible(!this.state.modalVisible);
@@ -129,7 +123,7 @@ class AddScheduleModal extends Component {
                     </View>
                 </Modal>
 
-                <Button title="Set Schedule" style={styles.showModalButton} onPress={() => {
+                <Button title="Add To Schedule" style={styles.showModalButton} onPress={() => {
                     this.setModalVisible(true);
                 }} />
             </View >
@@ -187,6 +181,3 @@ const styles = StyleSheet.create({
     },
 
 });
-        //import css grid react native easy grid
-        //import , container, nested pickers and button, first row - pickers
-        // second row -- button
