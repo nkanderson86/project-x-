@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Modal, Text, View, Alert, StyleSheet, Picker } from 'react-native';
-import { Button } from 'react-native-elements';
+import { Button, Image } from 'react-native-elements';
 import LoginHeaderImage from '../Login/LoginHeaderImage';
 import { Col, Row, Grid } from "react-native-easy-grid";
 import API from '../../utils/API';
@@ -45,9 +45,7 @@ class AddScheduleModal extends Component {
                         Alert.alert('Modal has been closed.');
                     }}>
                     <View>
-                        <View style={styles.modalImage} >
-                            <LoginHeaderImage />
-                        </View>
+
 
                         <View style={styles.inputFlex}>
                             <View style={styles.modalPickerDay}>
@@ -118,9 +116,10 @@ class AddScheduleModal extends Component {
                             </View>
                         </View>
 
-                        <Button title="Save" style={styles.saveModalButton} onPress={this.setSchedule} />
-                        {/* <Button title="Cancel" style={styles.saveModalButton} onPress={this.setModalVisible(!this.state.modalVisible)} /> */}
-                        <View>
+                        <View style={styles.buttonsContainer}>
+                            <Button title="Save" style={styles.saveModalButton} onPress={this.setSchedule} />
+                            {/* <Button title="Cancel" style={styles.saveModalButton} onPress={this.setModalVisible(!this.state.modalVisible)} /> */}
+
                             <Button title="Cancel" style={styles.saveModalButton} onPress={() => {
                                 this.setModalVisible(!this.state.modalVisible);
                             }} />
@@ -141,7 +140,7 @@ export default AddScheduleModal;
 const styles = StyleSheet.create({
 
     modalImage: {
-        marginTop: 80,
+        marginTop: 80
     },
 
     showModalButton: {
@@ -155,35 +154,41 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: "stretch",
+        marginTop: 100,
         marginLeft: 20,
-        marginRight: 20,
+        marginRight: 20
     },
 
     modalPickerDay: {
         height: 50,
         width: 80,
         marginLeft: 0,
-        marginRight: 5,
+        marginRight: 5
     },
 
     modalPickerWaterAmount: {
         height: 50,
         width: 100,
         marginLeft: 5,
-        marginRight: 5,
+        marginRight: 5
     },
 
     modalPickerTime: {
         height: 50,
         width: 80,
         marginLeft: 5,
-        marginRight: 0,
+        marginRight: 0
+    },
+
+    buttonsContainer: {
+        marginTop: 250,
     },
 
     saveModalButton: {
         marginTop: 40,
         marginRight: 20,
-        marginLeft: 20,
+        marginLeft: 20
+
     },
 
 });
