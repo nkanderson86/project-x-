@@ -23,22 +23,32 @@ class EditDeviceForm extends Component {
     }
 
     componentDidMount() {
+        this.props.navigation.addListener('willFocus', async (route) => {
+            const setState = this.setState.bind(this)
+            await UserSetup(this.state.UID, setState, this.state.page, this.state.deviceId)
+            // console.log("SCHEDULE", this.state.scheduleData)
+            this.handleNewSchedule()
+        })
         // inceptor to add userId to headers in order to make API calls as an authenticated user.  UserSetup also has an API call to retrieve all the arduinos for the account that will then be displayed to user on a table. 
-        const setState = this.setState.bind(this)
-        UserSetup(this.state.UID, setState, this.state.page, this.state.deviceId)
-        // console.log("SCHEDULE", this.state.scheduleData)
-        this.handleNewSchedule()
+
     }
+
+    // componentDidUpdate(prevProps, prevState) {
+    //     console.log(prevProps.data)
+    //     console.log(this.props.navigation.state.params.newSchedule)
+    //     // if(prevProps.data !== this.props.navigation.state.params.newSchedule)
+    // }
 
     handleNewSchedule() {
-        console.log("DID IT WORK", this.props.navigation.state.params)
-        // let schedule = this.props.navigation.state.params.newSchedule ? this.props.navigation.state.params.newSchedule : this.props.navigation.state.params.scheduleData
-        // this.setState({ scheduleData: schedule })
+        // console.log( this.props.navigation.state.params)
+        let schedule = this.props.navigation.state.params.newSchedule ? this.props.navigation.state.params.newSchedule : this.props.navigation.state.params.scheduleData
+        console.log('new param', schedule)
+        this.setState({ scheduleData: schedule })
     }
 
-    componentDidUpdate() {
-        console.log(this.state.scheduleData)
-    }
+    // componentDidUpdate() {
+    //     console.log(this.state.scheduleData)
+    // }
 
     goToSetSchedule = (userObj) => {
         const editSchedule = this.state.scheduleData
@@ -46,7 +56,7 @@ class EditDeviceForm extends Component {
             routeName: "SetSchedule",
             params: { data: userObj, editSchedule: editSchedule }
         });
-        console.log("USEROBJ", this.state)
+        // console.log("USEROBJ", this.state)
 
         this.props.navigation.dispatch(navigateAction);
     }
@@ -71,7 +81,7 @@ class EditDeviceForm extends Component {
                     </View>
                     <View>
                         {
-                            this.state.scheduleData.map(sch => {
+                            this.state.scheduleData ? this.state.scheduleData.map(sch => {
                                 return (
                                     <View>
                                         <Text>{`${sch.day}`}</Text>
@@ -79,7 +89,8 @@ class EditDeviceForm extends Component {
                                         <Text>{`${sch.time}`}</Text>
                                     </View>)
                             }
-                            )}
+                            )
+                                : null}
                     </View>
                 </Container>
             </ScrollView>

@@ -42,5 +42,5 @@ SetScheduleStack.navigationOptions = {
 // bottom tabs
 export default createBottomTabNavigator({
   DashboardStack,
-  SetScheduleStack,
+  // SetScheduleStack,
 });
