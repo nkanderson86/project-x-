@@ -29,23 +29,6 @@ class EditDeviceForm extends Component {
 
     }
 
-    // componentDidUpdate(prevProps, prevState) {
-    //     console.log(prevProps.data)
-    //     console.log(this.props.navigation.state.params.newSchedule)
-    //     // if(prevProps.data !== this.props.navigation.state.params.newSchedule)
-    // }
-
-    // handleNewSchedule() {
-    //     // console.log( this.props.navigation.state.params)
-    //     let schedule = this.props.navigation.state.params.newSchedule ? this.props.navigation.state.params.newSchedule : this.props.navigation.state.params.scheduleData
-    //     console.log('new param', schedule)
-    //     this.setState({ scheduleData: schedule })
-    // }
-
-    // componentDidUpdate() {
-    //     console.log(this.state.scheduleData)
-    // }
-
     goToSetSchedule = (userObj) => {
         const { scheduleData, name, deviceId, UID } = this.state
         const editSchedule = { scheduleData }
@@ -67,24 +50,27 @@ class EditDeviceForm extends Component {
                     <Form style={styles.editDeviceContainer}>
                         <Item style={styles.editDeviceField} stackedLabel last>
                             <Label>Device ID</Label>
-                            <Input value={`${this.state.deviceId}`} />
+                            <Input editable={false} value={this.state.deviceId} />
                         </Item>
                         <Item style={styles.editDeviceField} stackedLabel last>
-                            <Label>Edit Device Name</Label>
-                            <Input onChangeText={(text) => this.setState({ name: text })} value={this.state.name} />
+                            <Label>Device Name</Label>
+                            <Input editable={false} value={this.state.name} />
                         </Item>
                     </Form>
                     <View>
-                        <Button title="Edit/Set Schedule" style={styles.setScheduleButton} onPress={this.goToSetSchedule} />
+                        <Button title="Edit Device" style={styles.setScheduleButton} onPress={this.goToSetSchedule} />
                     </View>
                     <View>
+                        <Text style={{ textAlign: "center", fontSize: 18, marginTop: 20, textDecorationLine: "underline" }}>
+                            Device Schedule
+                        </Text>
+                    </View>
+                    <View >
                         {
                             this.state.scheduleData ? this.state.scheduleData.map((sch, i) => {
                                 return (
                                     <View key={i}>
-                                        <Text>{`${sch.day}`}</Text>
-                                        <Text>{`${sch.amount} cups`}</Text>
-                                        <Text>{`${sch.time}`}</Text>
+                                        <Text style={styles.viewScheduleText} >{`${sch.day}`}   |   {`${sch.time}`}   |   {`${sch.amount} cups`}</Text>
                                     </View>)
                             }
                             )
@@ -116,5 +102,11 @@ const styles = StyleSheet.create({
         marginRight: 20,
         marginLeft: 20
     },
+
+    viewScheduleText: {
+        textAlign: "center",
+        fontSize: 20,
+        marginTop: 20
+    }
 
 });

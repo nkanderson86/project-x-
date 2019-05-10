@@ -18,13 +18,11 @@ class LoginForm extends Component {
 
     }
 
-    goToMain = (userObj) => {
+    goToMain = () => {
         const navigateAction = NavigationActions.navigate({
             routeName: "Home",
-            // params: { data: userObj }
         });
         this.props.navigation.dispatch(navigateAction);
-        // this.props.navigation.goBack();
     }
 
     goToDashboard = (userObj) => {

@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import { StyleSheet, Text } from 'react-native';
 import { Form, Item, Input, Label } from 'native-base';
 import { Button } from 'react-native-elements';
-// import CreateAccountButton from "./CreateAccountButton"
 import { NavigationActions, withNavigation } from 'react-navigation';
 import API from '../../utils/API';
 
@@ -40,7 +39,6 @@ class SignupForm extends Component {
             routeName: "Home",
         });
         this.props.navigation.dispatch(navigateAction);
-        // this.props.navigation.goBack();
     }
 
     render() {

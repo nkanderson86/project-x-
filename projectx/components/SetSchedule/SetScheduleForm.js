@@ -9,9 +9,6 @@ import ViewSchedule from "./ViewSchedule"
 import UserSetup from '../userAuthListener';
 import API from '../../utils/API';
 
-
-// import Icon from 'react-native-vector-icons/FontAwesome';
-
 // create classful component
 class SetScheduleForm extends Component {
     // title for screen
@@ -82,26 +79,27 @@ class SetScheduleForm extends Component {
                 <Form style={styles.addDeviceContainer}>
                     <Item style={styles.addDeviceField} stackedLabel last>
                         <Label>Device ID</Label>
-                        <Input value={this.state.deviceId.deviceId} />
+                        <Input editable={false} value={this.state.deviceId.deviceId} />
                     </Item>
                     <Item style={styles.addDeviceField} stackedLabel last>
-                        <Label>Device Name</Label>
+                        <Label>Edit Device Name</Label>
                         <Input
                             value={this.state.plantName.name}
                             onChangeText={(value) => this.setState({ plantName: value })} />
                     </Item>
                     {/* button to route user, input logic to create account on component CreateAccountButton.js */}
                 </Form>
+
+                <View>
+                    <Button title="Save Changes" style={styles.saveScheduleButton} onPress={this.saveSchedule} />
+                </View>
+
                 <View style={styles.addScheduleModal}>
                     <AddScheduleModal addToSchedule={this.addToSchedule} />
                 </View>
 
                 <View>
                     {this.state.schedule.map((a, i) => <ViewSchedule handleDelete={this.handleDelete} schedule={a} key={i} data_id={i} />)}
-                </View>
-
-                <View>
-                    <Button title="Save Schedule" style={styles.saveScheduleButton} onPress={this.saveSchedule} />
                 </View>
             </Container >
 
