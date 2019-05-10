@@ -9,7 +9,7 @@ import { withNavigation } from 'react-navigation';
 class HomeScreen extends Component {
   // title for screen
   static navigationOptions = {
-    title: 'ProjectX Login',
+    title: "PLANT'R",
   };
 
   render() {
