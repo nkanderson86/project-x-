@@ -79,9 +79,9 @@ class EditDeviceForm extends Component {
                     </View>
                     <View>
                         {
-                            this.state.scheduleData ? this.state.scheduleData.map(sch => {
+                            this.state.scheduleData ? this.state.scheduleData.map((sch, i) => {
                                 return (
-                                    <View>
+                                    <View key={i}>
                                         <Text>{`${sch.day}`}</Text>
                                         <Text>{`${sch.amount} cups`}</Text>
                                         <Text>{`${sch.time}`}</Text>

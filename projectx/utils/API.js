@@ -4,7 +4,6 @@ const api_url = "https://nameless-reef-34646.herokuapp.com"
 
 export default {
     login: (userObj) => {
-        console.log(userObj)
         return axios.post(`${api_url}/api/login`, userObj)
     },
     logout: () => {
@@ -17,6 +16,7 @@ export default {
         return axios.get(`${api_url}/api/arduinos`)
     },
     updateArduino: (ardObj) => {
+        console.log("API POST trigger")
         return axios.post(`${api_url}/api/updateArduino`, ardObj)
     }
 }

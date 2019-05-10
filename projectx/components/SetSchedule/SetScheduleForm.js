@@ -34,6 +34,9 @@ class SetScheduleForm extends Component {
         const setState = this.setState.bind(this)
         UserSetup(this.state.UID, setState, this.state.page, this.state.deviceId)
     }
+    // componentDidUpdate() {
+    //     console.log(this.state.plantName)
+    // }
 
     addToSchedule = (newSchedule) => {
         let addedSchedule = this.state.schedule.map(a => a)
@@ -53,12 +56,14 @@ class SetScheduleForm extends Component {
 
     saveSchedule = () => {
         console.log(this.state.deviceId)
-        const { deviceId, plantName, schedule } = this.state
-        const ardObj = { deviceId: deviceId.deviceId, plantName: plantName.name, schedule: schedule }
+        let { deviceId, plantName, schedule } = this.state
+        console.log("plant: ", plantName)
+        plantName = plantName.name ? plantName.name : plantName;
+        const ardObj = { deviceId: deviceId.deviceId, plantName: plantName, schedule: schedule }
         console.log("ardObj", ardObj)
         API.updateArduino(ardObj)
             .then(res => {
-                console.log(res)
+                alert("Schedule Updated")
                 console.log("API Sent")
             })
             .catch(err => console.log('LOGIN ERROR: ', err))
@@ -81,7 +86,9 @@ class SetScheduleForm extends Component {
                     </Item>
                     <Item style={styles.addDeviceField} stackedLabel last>
                         <Label>Device Name</Label>
-                        <Input value={this.state.plantName.name} />
+                        <Input
+                            value={this.state.plantName.name}
+                            onChangeText={(value) => this.setState({ plantName: value })} />
                     </Item>
                     {/* button to route user, input logic to create account on component CreateAccountButton.js */}
                 </Form>
