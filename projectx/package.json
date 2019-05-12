@@ -18,6 +18,7 @@
     "pusher-js": "^4.4.0",
     "react": "^16.8.6",
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
+    "react-native-24h-timepicker": "^1.0.0",
     "react-native-easy-grid": "^0.2.1",
     "react-native-elements": "^1.1.0",
     "react-native-table-component": "^1.2.0",
