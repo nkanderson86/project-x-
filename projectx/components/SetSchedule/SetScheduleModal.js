@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Modal, View, Alert, StyleSheet, Picker } from 'react-native';
+import { Modal, View, Alert, StyleSheet, Picker, DatePickerIOS, Text } from 'react-native';
 import { Button } from 'react-native-elements';
+import TimePicker from "react-native-24h-timepicker";
 
 class AddScheduleModal extends Component {
 
@@ -9,7 +10,7 @@ class AddScheduleModal extends Component {
         switchValue: false,
         day: "Monday",
         amount: "0.25",
-        time: "0:01"
+        time: "10:00"
     };
 
     setModalVisible(visible) {
@@ -23,6 +24,15 @@ class AddScheduleModal extends Component {
         this.props.addToSchedule(newSchedule);
 
         this.setModalVisible(!this.state.modalVisible);
+    }
+
+    onCancel() {
+        this.TimePicker.close();
+    }
+
+    onConfirm(hour, minute) {
+        this.setState({ time: `${hour}:${minute}` });
+        this.TimePicker.close();
     }
 
     render() {
@@ -74,39 +84,24 @@ class AddScheduleModal extends Component {
                                     <Picker.Item label="4 cups" value="4" />
                                 </Picker>
                             </View>
+                        </View>
 
-                            <View style={styles.modalPickerTime}>
-                                <Picker
-                                    selectedValue={this.state.time}
-                                    onValueChange={(timeValue, itemIndex) =>
-                                        this.setState({ time: timeValue })
-                                    }>
-                                    <Picker.Item label="00:01" value="00:01" />
-                                    <Picker.Item label="01:00" value="01:00" />
-                                    <Picker.Item label="02:00" value="02:00" />
-                                    <Picker.Item label="03:00" value="03:00" />
-                                    <Picker.Item label="04:00" value="04:00" />
-                                    <Picker.Item label="05:00" value="05:00" />
-                                    <Picker.Item label="06:00" value="06:00" />
-                                    <Picker.Item label="07:00" value="07:00" />
-                                    <Picker.Item label="08:00" value="08:00" />
-                                    <Picker.Item label="09:00" value="09:00" />
-                                    <Picker.Item label="10:00" value="10:00" />
-                                    <Picker.Item label="11:00" value="11:00" />
-                                    <Picker.Item label="12:00" value="12:00" />
-                                    <Picker.Item label="13:00" value="13:00" />
-                                    <Picker.Item label="14:00" value="14:00" />
-                                    <Picker.Item label="15:00" value="15:00" />
-                                    <Picker.Item label="16:00" value="16:00" />
-                                    <Picker.Item label="17:00" value="17:00" />
-                                    <Picker.Item label="18:00" value="18:00" />
-                                    <Picker.Item label="19:00" value="19:00" />
-                                    <Picker.Item label="20:00" value="20:00" />
-                                    <Picker.Item label="21:00" value="21:00" />
-                                    <Picker.Item label="22:00" value="22:00" />
-                                    <Picker.Item label="23:00" value="23:00" />
-                                </Picker>
-                            </View>
+                        <View style={styles.timePicker}>
+                            <Text style={styles.text}>Selected Time | {this.state.time}</Text>
+                            <Button
+                                style={styles.saveModalButton}
+                                title="Choose Time"
+                                onPress={() => this.TimePicker.open()}
+                            >
+                            </Button>
+
+                            <TimePicker
+                                ref={ref => {
+                                    this.TimePicker = ref;
+                                }}
+                                onCancel={() => this.onCancel()}
+                                onConfirm={(hour, minute) => this.onConfirm(hour, minute)}
+                            />
                         </View>
 
                         <View style={styles.buttonsContainer}>
@@ -145,7 +140,7 @@ const styles = StyleSheet.create({
     inputFlex: {
         flex: 1,
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'space-around',
         alignItems: "stretch",
         marginTop: 100,
         marginLeft: 20,
@@ -174,7 +169,12 @@ const styles = StyleSheet.create({
     },
 
     buttonsContainer: {
-        marginTop: 250,
+        marginTop: 50,
+    },
+
+    timePicker: {
+        marginTop: 200,
+        alignItems: "center"
     },
 
     saveModalButton: {
@@ -183,5 +183,26 @@ const styles = StyleSheet.create({
         marginLeft: 20
 
     },
+    container: {
+        flex: 1,
+        alignItems: "center",
+        paddingTop: 100
+    },
+    text: {
+        fontSize: 20,
+        marginTop: 10
+    },
+    button: {
+        backgroundColor: "grey",
+        paddingVertical: 11,
+        paddingHorizontal: 17,
+        borderRadius: 3,
+        marginVertical: 50
+    },
+    buttonText: {
+        color: "black",
+        fontSize: 16,
+        fontWeight: "600"
+    }
 
 });
