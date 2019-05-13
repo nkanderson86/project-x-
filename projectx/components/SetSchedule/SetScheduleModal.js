@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Modal, View, Alert, StyleSheet, Picker, DatePickerIOS, Text } from 'react-native';
+import { Modal, View, Alert, StyleSheet, Picker, Text } from 'react-native';
 import { Button } from 'react-native-elements';
 import TimePicker from "react-native-24h-timepicker";
 

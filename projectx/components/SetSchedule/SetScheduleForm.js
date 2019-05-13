@@ -1,6 +1,6 @@
 // required imports and dependencies
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, ScrollView } from 'react-native';
 import { Button } from 'react-native-elements';
 import { Container, Form, Item, Input, Label } from 'native-base';
 import { withNavigation, NavigationActions } from 'react-navigation';

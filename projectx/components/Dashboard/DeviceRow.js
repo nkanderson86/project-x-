@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Container, Text } from 'react-native';
+import { StyleSheet, View, ScrollView, Text } from 'react-native';
 import { Table, TableWrapper, Row, Cell } from 'react-native-table-component';
 import { NavigationActions, withNavigation } from "react-navigation";
 import { CheckBox } from 'react-native-elements';
