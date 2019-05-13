@@ -12,11 +12,12 @@ class DeviceRow extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            tableHead: ['Name', 'Device ID', 'Status', 'Edit'],
+            tableHead: ['Name', 'DeviceID', 'Status', 'Edit', 'Active'],
             tableData: [
             ],
             UID: props.navigation.state.params.data.UID,
-            page: "dashboard"
+            page: "dashboard",
+            isActive: null
         }
     }
 
@@ -25,7 +26,6 @@ class DeviceRow extends Component {
         const setState = this.setState.bind(this)
         let pusher = UserSetup(this.state.UID, setState, this.state.page)
         this.setState({ pusher: pusher })
-        // this.statusColors(this.state.tableData[2]);
     }
 
     statusColors = (status) => {
@@ -76,7 +76,7 @@ class DeviceRow extends Component {
                                     rowData.map((cellData, cellIndex) => {
                                         console.log("CELL DATA", cellData)
                                         return (
-                                            <Cell key={cellIndex} data={cellIndex === 3 ? <CheckBox center iconType='material' uncheckedIcon='add' checked={this.state.checked} onPress={() => this.goToEditDevice(index)} /> : (cellIndex === 2 && cellData === 0) ? <Text style={{ color: "green" }} >Good </Text> : (cellIndex === 2 && cellData === 1) ? <Text style={{ color: "red" }} >Err </Text> : (cellIndex === 2 && cellData === 2) ? <Text>Unassigned </Text> : cellData} textStyle={styles.text} />
+                                            <Cell key={cellIndex} data={cellIndex === 3 ? <CheckBox center iconType='material' uncheckedIcon='add' checked={this.state.checked} onPress={() => this.goToEditDevice(index)} /> : (cellIndex === 2 && cellData === 0) ? <Text style={{ color: "green" }} >Good </Text> : (cellIndex === 2 && cellData === 1) ? <Text style={{ color: "red" }} >Err </Text> : (cellIndex === 2 && cellData === 2) ? <Text>Unassigned </Text> : (cellIndex === 4 && cellData === true) ? <Text>True</Text> : (cellIndex === 4 && cellData === false) ? <Text>False</Text> : cellData} textStyle={styles.text} />
                                         )
                                     }
                                     )

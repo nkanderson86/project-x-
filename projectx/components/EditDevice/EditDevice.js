@@ -15,13 +15,15 @@ class EditDeviceForm extends Component {
         UID: this.props.navigation.state.params.UID,
         data: this.props.navigation.state.params.data,
         page: "editDevice",
-        scheduleData: []
+        scheduleData: [],
+        isActive: null
     }
 
     componentDidMount() {
         this.props.navigation.addListener('willFocus', async (route) => {
             const setState = this.setState.bind(this)
             await UserSetup(this.state.UID, setState, this.state.page, this.state.deviceId)
+            // console.log("obj", this.props.navigation.state.params.active)
             // console.log("SCHEDULE", this.state.scheduleData)
             // this.handleNewSchedule()
         })

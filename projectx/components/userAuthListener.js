@@ -30,12 +30,14 @@ function UserSetup(UID, cb, page, deviceId) {
         return API.getArduinos()
             .then(res => {
                 let arduinos = res.data.piDevice.arduinos
+                // console.log("ARD: ", arduinos)
                 // TODO: Start Switch here
                 switch (page) {
                     case "dashboard":
                         let tableData = []
                         arduinos.forEach(arduino => {
-                            tableData.push([arduino.plantName, arduino.deviceId, arduino.status, 'test'])
+                            isActive = arduino.active
+                            tableData.push([arduino.plantName, arduino.deviceId, arduino.status, 'test', arduino.active])
                         })
                         cb({ tableData: tableData })
                         break;
