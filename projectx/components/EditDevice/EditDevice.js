@@ -45,26 +45,27 @@ class EditDeviceForm extends Component {
 
     render() {
         return (
-            <ScrollView>
-                <Container>
-                    <Form style={styles.editDeviceContainer}>
-                        <Item style={styles.editDeviceField} stackedLabel last>
-                            <Label>Device ID</Label>
-                            <Input editable={false} value={this.state.deviceId} />
-                        </Item>
-                        <Item style={styles.editDeviceField} stackedLabel last>
-                            <Label>Device Name</Label>
-                            <Input editable={false} value={this.state.name} />
-                        </Item>
-                    </Form>
-                    <View>
-                        <Button title="Edit Device" style={styles.setScheduleButton} onPress={this.goToSetSchedule} />
-                    </View>
-                    <View>
-                        <Text style={{ textAlign: "center", fontSize: 18, marginTop: 20, textDecorationLine: "underline" }}>
-                            Device Schedule
+            <Container>
+                <Form style={styles.editDeviceContainer}>
+                    <Item style={styles.editDeviceField} stackedLabel last>
+                        <Label>Device ID</Label>
+                        <Input editable={false} value={this.state.deviceId} />
+                    </Item>
+                    <Item style={styles.editDeviceField} stackedLabel last>
+                        <Label>Device Name</Label>
+                        <Input editable={false} value={this.state.name} />
+                    </Item>
+                </Form>
+                <View>
+                    <Button title="Edit Device" style={styles.setScheduleButton} onPress={this.goToSetSchedule} />
+                </View>
+                <View>
+
+                    <Text style={{ textAlign: "center", fontSize: 18, marginTop: 20, textDecorationLine: "underline" }}>
+                        Device Schedule
                         </Text>
-                    </View>
+                </View>
+                <ScrollView>
                     <View >
                         {
                             this.state.scheduleData ? this.state.scheduleData.map((sch, i) => {
@@ -76,9 +77,8 @@ class EditDeviceForm extends Component {
                             )
                                 : null}
                     </View>
-                </Container>
-            </ScrollView>
-
+                </ScrollView>
+            </Container>
         );
     }
 }

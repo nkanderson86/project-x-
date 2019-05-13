@@ -97,10 +97,11 @@ class SetScheduleForm extends Component {
                 <View style={styles.addScheduleModal}>
                     <AddScheduleModal addToSchedule={this.addToSchedule} />
                 </View>
-
-                <View>
-                    {this.state.schedule.map((a, i) => <ViewSchedule handleDelete={this.handleDelete} schedule={a} key={i} data_id={i} />)}
-                </View>
+                <ScrollView>
+                    <View>
+                        {this.state.schedule.map((a, i) => <ViewSchedule handleDelete={this.handleDelete} schedule={a} key={i} data_id={i} />)}
+                    </View>
+                </ScrollView>
             </Container >
 
         );

@@ -4,7 +4,6 @@ import { StyleSheet, Text } from 'react-native';
 import { Form, Item, Input, Label } from 'native-base';
 import { NavigationActions, withNavigation } from "react-navigation";
 import { Button } from 'react-native-elements';
-// import LoginButton from "./LoginButton"
 import ForgotPasswordButton from "../Forgot/ForgotPasswordButton"
 import SignupButton from "../Signup/SignupButton"
 import API from '../../utils/API';

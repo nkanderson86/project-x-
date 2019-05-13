@@ -24,23 +24,37 @@ DashboardStack.navigationOptions = {
   ),
 };
 
-const SetScheduleStack = createStackNavigator({
-  SetSchedule: SetScheduleScreen,
-})
+// const SetScheduleStack = createStackNavigator({
+//   SetSchedule: SetScheduleScreen,
+// })
 
-SetScheduleStack.navigationOptions = {
-  tabBarLabel: 'Set Schedule',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'}
-    />
-  ),
-};
+// SetScheduleStack.navigationOptions = {
+//   tabBarLabel: 'Set Schedule',
+//   tabBarIcon: ({ focused }) => (
+//     <TabBarIcon
+//       focused={focused}
+//       name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'}
+//     />
+//   ),
+// };
 
+// const EditDeviceStack = createStackNavigator({
+//   EditDevice: EditDeviceScreen,
+// })
+
+// EditDeviceStack.navigationOptions = {
+//   tabBarLabel: 'Edit Device',
+//   tabBarIcon: ({ focused }) => (
+//     <TabBarIcon
+//       focused={focused}
+//       name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'}
+//     />
+//   ),
+// };
 
 // bottom tabs
 export default createBottomTabNavigator({
   DashboardStack,
   // SetScheduleStack,
+  // EditDeviceStack
 });
